@@ -7,7 +7,7 @@ const chalk = require('chalk');
 require('./src/config/mongooseConfig');
 
 
-const server = express()
+const server = express();
 const port = process.env.PORT || 5002;
 
 server.use(express.json());
