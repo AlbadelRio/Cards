@@ -23,7 +23,41 @@ async function getAllUsers({query}, res){
     }
 }
 
-module.exports ={
+async function updatedUserById ({ params: {userId}, body}, res){
+    try {
+        const dataToUpdate = body;
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            dataToUpdate,
+            {  new: true }
+            );
+        res.json(updatedUser);
+    } catch (error) {
+        handleError(error, status = 404);
+    }
+}
+async function getUserById( { params: { userId } }, res){
+    try {
+        const user= await User.findById(userId);
+        res.json(user);
+    } catch (error) {
+        handleError(error,status= 404);
+    }
+
+}
+
+async function deleteUser({ params: { userId } }, res){
+    try {
+        await User.findByIdAndDelete(userId);
+        res.json('The user has been deleted');
+    } catch (error) {
+        handleError(error,status= 404);
+    }
+}
+module.exports = {
     createUser,
-    getAllUsers
-};
+    getAllUsers,
+    updatedUserById,
+    getUserById,
+    deleteUser
+}; 
