@@ -14,6 +14,16 @@ async function createUser({body}, res){
     }
 }
 
+async function getAllUsers({query}, res){
+    try {
+        const users= await User.find(query);
+        res.json(users);
+    } catch (error) {
+        handleError(error, status = 500);
+    }
+}
+
 module.exports ={
-    createUser
+    createUser,
+    getAllUsers
 };
