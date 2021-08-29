@@ -3,6 +3,10 @@ require('dotenv').config();
 const debug = require('debug')('server');
 const chalk = require('chalk');
 
+
+require('./src/config/mongooseConfig');
+
+
 const server = express()
 const port = process.env.PORT || 5002;
 
