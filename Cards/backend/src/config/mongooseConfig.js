@@ -1,5 +1,5 @@
 const { connect } = require('mongoose');
-const debug = require('debug')('server:ddbbConfig');
+const debug = require('debug')('cards:ddbbConfig');
 
 connect(
   process.env.DDBB_URL,

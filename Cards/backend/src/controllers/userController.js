@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
 
-function handleError(error, status) {
+function handleError(error, status = 500) {
     this.status(status);
     this.send(error.message);
 }
@@ -10,7 +10,7 @@ async function createUser({body}, res){
         const createdUser= await User.create(body);
         res.json(createdUser);
     } catch (error) {
-        handleError(error, status = 500);
+        handleError.call(res, error);
     }
 }
 
@@ -19,11 +19,11 @@ async function getAllUsers({query}, res){
         const users= await User.find(query);
         res.json(users);
     } catch (error) {
-        handleError(error, status = 500);
+        handleError.call(res, error);
     }
 }
 
-async function updatedUserById ({ params: {userId}, body}, res){
+async function updatedUserById ({ params: { userId }, body}, res){
     try {
         const dataToUpdate = body;
         const updatedUser = await User.findByIdAndUpdate(
@@ -33,15 +33,15 @@ async function updatedUserById ({ params: {userId}, body}, res){
             );
         res.json(updatedUser);
     } catch (error) {
-        handleError(error, status = 404);
+        handleError.call(res, error, 404);
     }
 }
 async function getUserById( { params: { userId } }, res){
     try {
-        const user= await User.findById(userId);
+        const user = await User.findById(userId);
         res.json(user);
     } catch (error) {
-        handleError(error,status= 404);
+        handleError.call(res, error, 404);
     }
 
 }
@@ -51,7 +51,7 @@ async function deleteUser({ params: { userId } }, res){
         await User.findByIdAndDelete(userId);
         res.json('The user has been deleted');
     } catch (error) {
-        handleError(error,status= 404);
+        handleError.call(res, error, 404);
     }
 }
 module.exports = {
