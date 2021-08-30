@@ -1,6 +1,9 @@
 const {createUser,
      getAllUsers,
-    updatedUserById} = require('../controllers/userController')
+    updatedUserById,
+    getUserById,
+    deleteUser
+} = require('../controllers/userController')
 
 const User = require('../models/userModel');
 
@@ -94,5 +97,45 @@ describe('UserController',()=>{
             });
         });
     });
+    describe('Given a getUserById controller', () => {
+        req = {
+            params: { userId: 1 }
+        };
+        describe('And user.findById', () => {
+            test('Then call send', async () => {
+                User.findById.mockResolvedValue({ });
+                await getUserById(req, res);
+                expect(res.json).toHaveBeenCalled();
+            });
+        });
+        describe('And getUserById rejects', () => {
+            test('Then handleError call with 404', async () => {
+                User.findById.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
+                await getUserById(req, res);
+                expect(res.status).toHaveBeenCalledWith(404);
+                expect(res.send.mock.calls[0][0]).toBe('USER_NOT_FOUND_ERROR');
+            });
+        });
 
+    });
+    describe('Given a deleteUser controller', () => {
+        req = {
+            params: { userId: 1 }
+        };
+        describe ('And user.findByIdAndDelete', () => {
+            test('Then call send', async () => {
+                User.findByIdAndDelete.mockResolvedValue({ });
+                await deleteUser(req, res);
+                expect(res.json).toHaveBeenCalled();
+            });
+        });
+        describe('And user.findByIdAndDelete rejects', () =>{
+            test('Then handleError call with 404', async () => {
+                User.findByIdAndDelete.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
+                await deleteUser(req, res);
+                expect(res.status).toHaveBeenCalledWith(404);
+                expect(res.send.mock.calls[0][0]).toBe('USER_NOT_FOUND_ERROR');
+            })
+        })
+    });
 });

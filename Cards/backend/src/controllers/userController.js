@@ -38,7 +38,7 @@ async function updatedUserById ({ params: { userId }, body}, res){
 }
 async function getUserById( { params: { userId } }, res){
     try {
-        const user= await User.findById(userId);
+        const user = await User.findById(userId);
         res.json(user);
     } catch (error) {
         handleError.call(res, error, 404);
@@ -51,7 +51,7 @@ async function deleteUser({ params: { userId } }, res){
         await User.findByIdAndDelete(userId);
         res.json('The user has been deleted');
     } catch (error) {
-        handleError(res, error, 404);
+        handleError.call(res, error, 404);
     }
 }
 module.exports = {
