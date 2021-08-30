@@ -1,14 +1,15 @@
-const Card = require('../models/userModel');
+const Card = require('../models/cardModel');
 
 function handleError(error, status = 404) {
     this.status(status);
     this.send(error.message);
 }
 
-async function createCard({body}, res){
+async function createCard({ body }, res){
     try {
-        const createdCard= await Card.create(body);
+        const createdCard = await Card.create(body);
         res.json(createdCard);
+
     } catch (error) {
         handleError.call(res, error, 500);
     }
@@ -20,13 +21,17 @@ async function updateCardById ({ params: { cardId }, body}, res){
         const updatedCard = await Card.findByIdAndUpdate(
             cardId,
             dataToUpdate,
-            {  new: true }
+            {  new: true,
+               useFindAndModify: false
+            }
             );
         res.json(updatedCard);
+
     } catch (error) {
         handleError.call(res, error);
     }
 }
+
 async function deleteCard({ params: { cardId } }, res){
     try {
         await Card.findByIdAndDelete(cardId);

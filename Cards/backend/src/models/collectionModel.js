@@ -7,7 +7,7 @@ const collectionSchema = Schema({
     Public:Boolean,
     user:{ type: Schema.Types.ObjectId, ref: 'User' },
     cardCollection:[{
-        card:{ type:Schema.Types.ObjectId, ref: 'Card' }
+        collection:[{ type:Schema.Types.ObjectId, ref: 'Cards' }]
     }]
 });
 

@@ -17,9 +17,9 @@ describe('UserController',()=>{
 
     beforeEach(() => {
         res = {
-        json: jest.fn(),
-        status: jest.fn(),
-        send: jest.fn(),
+            json: jest.fn(),
+            status: jest.fn(),
+            send: jest.fn(),
         };
         
     });
@@ -63,7 +63,7 @@ describe('UserController',()=>{
                     expect(res.json).toHaveBeenCalled();
                 });
             });
-            describe('And getallUsers rejects', () => {
+            describe('And User.find rejects', () => {
                 test('Then handleError call with 500', async () => {
                     User.find.mockRejectedValue(new Error('SERVER_ERROR'));
                     await getAllUsers(req, res);
@@ -88,7 +88,7 @@ describe('UserController',()=>{
                 expect(res.json).toHaveBeenCalled();
             });    
         });
-        describe('And updateUserByid rejects', () => {
+        describe('And User.findByIdAndUpdate rejects', () => {
             test('Then handleError call with 404', async () => {
                 User.findByIdAndUpdate.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
                 await updatedUserById(req, res);
@@ -101,14 +101,14 @@ describe('UserController',()=>{
         req = {
             params: { userId: 1 }
         };
-        describe('And user.findById', () => {
+        describe('And User.findById', () => {
             test('Then call send', async () => {
                 User.findById.mockResolvedValue({ });
                 await getUserById(req, res);
                 expect(res.json).toHaveBeenCalled();
             });
         });
-        describe('And getUserById rejects', () => {
+        describe('And User.findById rejects', () => {
             test('Then handleError call with 404', async () => {
                 User.findById.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
                 await getUserById(req, res);
@@ -122,14 +122,14 @@ describe('UserController',()=>{
         req = {
             params: { userId: 1 }
         };
-        describe ('And user.findByIdAndDelete', () => {
+        describe ('And User.findByIdAndDelete', () => {
             test('Then call send', async () => {
                 User.findByIdAndDelete.mockResolvedValue({ });
                 await deleteUser(req, res);
                 expect(res.json).toHaveBeenCalled();
             });
         });
-        describe('And user.findByIdAndDelete rejects', () =>{
+        describe('And User.findByIdAndDelete rejects', () =>{
             test('Then handleError call with 404', async () => {
                 User.findByIdAndDelete.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
                 await deleteUser(req, res);
