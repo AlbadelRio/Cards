@@ -1,6 +1,6 @@
 const express = require('express');
 require('dotenv').config();
-const debug = require('debug')('server');
+const debug = require('debug')('cards');
 const chalk = require('chalk');
 const morgan = require('morgan');
 
