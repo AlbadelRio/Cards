@@ -7,6 +7,7 @@ userRouter
     .route('/')
     .get(getAllUsers)
     .post(createUser);
+    
 userRouter
     .route('/:userId')
     .put(updatedUserById)

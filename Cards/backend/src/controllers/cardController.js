@@ -1,6 +1,6 @@
 const Card = require('../models/userModel');
 
-function handleError(error, status = 500) {
+function handleError(error, status = 404) {
     this.status(status);
     this.send(error.message);
 }
@@ -10,11 +10,11 @@ async function createCard({body}, res){
         const createdCard= await Card.create(body);
         res.json(createdCard);
     } catch (error) {
-        handleError.call(res, error);
+        handleError.call(res, error, 500);
     }
 }
 
-async function updateCardById ({ params: { CardId }, body}, res){
+async function updateCardById ({ params: { cardId }, body}, res){
     try {
         const dataToUpdate = body;
         const updatedCard = await Card.findByIdAndUpdate(
@@ -24,12 +24,19 @@ async function updateCardById ({ params: { CardId }, body}, res){
             );
         res.json(updatedCard);
     } catch (error) {
-        handleError.call(res, error, 404);
+        handleError.call(res, error);
     }
 }
-
+async function deleteCard({ params: { cardId } }, res){
+    try {
+        await Card.findByIdAndDelete(cardId);
+        res.json('The user has been deleted');
+    } catch (error) {
+        handleError.call(res, error);
+    }
+}
 module.exports = {
     createCard,
     updateCardById,
-
+    deleteCard
 }
