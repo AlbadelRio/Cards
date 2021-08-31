@@ -6,9 +6,8 @@ const collectionSchema = Schema({
     subject:String,
     Public:Boolean,
     user:{ type: Schema.Types.ObjectId, ref: 'User' },
-    cardCollection:[{
-        collection:[{ type:Schema.Types.ObjectId, ref: 'Cards' }]
-    }]
+    collection:[{ type:Schema.Types.ObjectId, ref: 'Cards' }]
+
 });
 
-module.exports = model('Collection', collectionSchema);
+module.exports = model('Collection', collectionSchema); 
