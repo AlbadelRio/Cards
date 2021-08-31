@@ -35,7 +35,7 @@ async function updateCardById ({ params: { cardId }, body}, res){
 async function deleteCard({ params: { cardId } }, res){
     try {
         await Card.findByIdAndDelete(cardId);
-        res.json('The user has been deleted');
+        res.send('The user has been deleted');
     } catch (error) {
         handleError.call(res, error);
     }

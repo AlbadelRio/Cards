@@ -1,5 +1,5 @@
 const {createUser,
-     getAllUsers,
+    getAllUsers,
     updatedUserById,
     getUserById,
     deleteUser
