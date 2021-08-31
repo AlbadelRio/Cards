@@ -31,7 +31,26 @@ async function findRandomBySubject({ query: { subject } }, res) {
     handleError.call(res, error);
   }
 }
-
+async function findAllPackCards({ query }, res) {
+  try {
+    const allPackCards = await PackCard.find(query);
+    res.json(allPackCards);
+  } catch (error) {
+    handleError.call(res, error);
+  }
+}
+async function findPackCardById({ params: { packCardId } }, res) {
+  try {
+    const foundPackCard = await PackCard.findById(packCardId)
+      .populate({
+        path: 'cards',
+        select: ['image_url', 'question', 'answer']
+      });
+    res.json(foundPackCard);
+  } catch (error) {
+    handleError.call(res, error);
+  }
+}
 async function updatePackCard({ params: { packCardId } }, res) {
   try {
     const unpdatedPackCard = await PackCard.findByIdAndUpdate(packCardId);
@@ -42,5 +61,10 @@ async function updatePackCard({ params: { packCardId } }, res) {
 }
 
 module.exports = {
-  createPackCard, deletePackCard, findRandomBySubject, updatePackCard
+  createPackCard,
+  deletePackCard,
+  findRandomBySubject,
+  updatePackCard,
+  findAllPackCards,
+  findPackCardById
 };

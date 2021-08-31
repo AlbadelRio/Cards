@@ -5,10 +5,6 @@ const packCardSchema = Schema({
   image: String,
   subject: String,
   public: Boolean,
-  results: {
-    timesPlayed: Number,
-    stat: Number
-  },
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   packCards: [{ type: Schema.Types.ObjectId, ref: 'Cards' }]
 
