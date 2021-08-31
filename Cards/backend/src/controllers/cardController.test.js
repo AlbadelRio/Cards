@@ -1,8 +1,12 @@
-const { createCard }= require('../controllers/cardController');
+const { createCard, 
+    updateCardById, 
+    deleteCard 
+} = require('../controllers/cardController');
 const Card = require('../models/cardModel');
 
 
 jest.mock('../models/cardModel');
+
 
 describe('CardController',()=>{
     let req;
@@ -35,6 +39,50 @@ describe('CardController',()=>{
                     expect(res.status).toHaveBeenCalledWith(500);
                     expect(res.send.mock.calls[0][0]).toBe('CREATE_ERROR');
                 });
+            });
+        });
+    });
+
+    describe('Given a updateCardById controller', () =>{
+        req = {
+            params:{ },
+            body:' '
+        };
+        describe('And Card.findByIdAndUpdate resolves', () => {
+            test('Then call send', async () => {
+                Card.findByIdAndUpdate.mockResolvedValue( { } );
+                await updateCardById(req,res);
+                expect(res.json).toHaveBeenCalled();
+            });
+
+        });
+        describe('And Card.findByIdAndUpdate rejects', () => {
+            test('then handleError call with 404', async () => {
+                Card.findByIdAndUpdate.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
+                await updateCardById(req, res);
+                expect(res.status).toHaveBeenCalledWith(404);
+                expect(res.send.mock.calls[0][0]).toBe('USER_NOT_FOUND_ERROR');
+   
+            }); 
+        });
+    });
+    describe('Given a deleteCard controller', () => {
+        req={
+            params: { }
+        };
+        describe('And deleteCard resolves', () => {
+            test('Then call send', async () => {
+                Card.findByIdAndDelete.mockResolvedValue();
+                await deleteCard(req,res);
+                expect(res.send).toHaveBeenCalled();
+            });
+        });
+        describe('And Card.findByIdAndDelete rejects', () => {
+            test('Then handleError call with 404', async() => { 
+                Card.findByIdAndDelete.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
+                await deleteCard(req,res);
+                expect(res.status).toHaveBeenCalledWith(404);
+                expect(res.send.mock.calls[0][0]).toBe('USER_NOT_FOUND_ERROR');
             });
         });
     });
