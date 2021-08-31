@@ -14,9 +14,11 @@ server.use(express.json());
 
 const userRouter = require('./src/routes/userRoute');
 const cardRouter = require('./src/routes/cardRoute');
+const packCardRouter = require('./src/routes/packCardRoute');
 
 server.use('/api/users', userRouter);
 server.use('/api/cards', cardRouter);
+server.use('/api/packCards', packCardRouter);
 
 server.listen(
   port,
