@@ -1,4 +1,4 @@
-const { Collection } = require('mongoose');
+const Collection = require('../models/collectionModel');
 
 function handleError(error, status = 500) {
   this.status(status);
@@ -14,4 +14,12 @@ async function createCollection({ body }, res) {
   }
 }
 
-module.exports = { createCollection };
+async function deleteCollection({ params: collectionId }, res) {
+  try {
+    await Collection.findByIdAndDelete(collectionId);
+    res.json('The collection has been deleted');
+  } catch (error) {
+    handleError.call(res, error);
+  }
+}
+module.exports = { createCollection, deleteCollection };
