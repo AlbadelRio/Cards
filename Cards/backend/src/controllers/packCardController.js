@@ -25,10 +25,22 @@ async function deletePackCard({ params: { packCardId } }, res) {
 
 async function findRandomBySubject({ query: { subject } }, res) {
   try {
-    const foundPackCard = await PackCard.aggregate([{ $match: { subject } }]).sample(1);
+    const foundPackCard = await PackCard.aggregate([{ $match: { subject } }]).sample(1).populate('cards');
     res.json(foundPackCard);
   } catch (error) {
     handleError.call(res, error);
   }
 }
-module.exports = { createPackCard, deletePackCard, findRandomBySubject };
+
+async function updatePackCard({ params: { packCardId } }, res) {
+  try {
+    const unpdatedPackCard = await PackCard.findByIdAndUpdate(packCardId);
+    res.json(unpdatedPackCard);
+  } catch (error) {
+    handleError.call(res, error);
+  }
+}
+
+module.exports = {
+  createPackCard, deletePackCard, findRandomBySubject, updatePackCard
+};
