@@ -10,7 +10,7 @@ async function createPackCard({ body }, res) {
     const newPackCard = await PackCard.create(body);
     res.json(newPackCard);
   } catch (error) {
-    handleError(res, error, 404);
+    handleError.call(res, error);
   }
 }
 

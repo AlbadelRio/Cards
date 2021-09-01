@@ -10,7 +10,7 @@ function handleError(error, status = 404) {
 async function createCard({ params: { packCardId }, body }, res) {
   try {
     const createdCard = await Card.create(body);
-    const foundPackCard = PackCard.findById(packCardId);
+    const foundPackCard = await PackCard.findById(packCardId);
     foundPackCard.packCard.push(createdCard._id);
     foundPackCard.save();
     res.json(createdCard);

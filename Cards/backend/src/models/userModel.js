@@ -5,22 +5,15 @@ const userSchema = Schema({
   email: String,
   location: String,
   image: String,
-  info: [{
-    packTittle: String,
-    cardsAdquired: [{
-      packId: 'String',
-      cards: []
-    }],
-    difficultCards: [{
-      packId: 'String',
-      cards: []
-    }],
+  data: [{
+    packId: String,
+    cardsAdquired: [String],
+    difficultCards: [String],
     stats: [{
       date: Date,
       timePlayed: Number,
       percentage: Number
     }]
-
   }]
 });
 

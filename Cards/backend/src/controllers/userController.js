@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const User = require('../models/userModel');
 
 function handleError(error, status = 500) {
@@ -44,6 +45,34 @@ async function getUserById({ params: { userId } }, res) {
     handleError.call(res, error, 404);
   }
 }
+async function updateUserData({ params: { userId }, body, query }, res) {
+  try {
+    const userFound = getUserById(userId);
+    const userData = userFound.data.find((data) => data.packId === body.packCard._id);
+    switch (query) {
+      case 'cardsAquired':
+        userData.cardsAdquired.push(body.cardId);
+        userData.save();
+        break;
+      case 'difficultCards':
+        userData.difficultCards.push(body.cardId);
+        userData.save();
+        break;
+      case 'stats': {
+        const existingDate = userData.stats.find((data) => data.date === body.date);
+        if (!existingDate) {
+          userData.stats.push(body);
+          userData.save();
+        } else { console.log('hola'); } }
+        break;
+      default:
+        break;
+    }
+    res.json(userData);
+  } catch (error) {
+    handleError.call(res, error, 404);
+  }
+}
 
 async function deleteUser({ params: { userId } }, res) {
   try {
@@ -58,5 +87,6 @@ module.exports = {
   getAllUsers,
   updatedUserById,
   getUserById,
-  deleteUser
+  deleteUser,
+  updateUserData
 };

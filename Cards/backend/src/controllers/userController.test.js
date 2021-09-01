@@ -80,7 +80,7 @@ describe('UserController', () => {
         await updatedUserById(req, res);
 
         expect(res.json).toHaveBeenCalled();
-      });
+      }); 
     });
     describe('And User.findByIdAndUpdate rejects', () => {
       test('Then handleError call with 404', async () => {
