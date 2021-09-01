@@ -1,14 +1,17 @@
+const { DataChanges } = require('../utils/utils');
 const {
   createUser,
   getAllUsers,
   updatedUserById,
   getUserById,
-  deleteUser
+  deleteUser,
+  updateUserData
 } = require('./userController');
 
 const User = require('../models/userModel');
 
 jest.mock('../models/userModel');
+jest.mock('../utils/utils');
 
 describe('UserController', () => {
   let req;
@@ -36,10 +39,14 @@ describe('UserController', () => {
       });
 
       describe('And User.create rejects', () => {
-        test('Then handleError call with 500', async () => {
+        beforeEach(async () => {
           User.create.mockRejectedValue(new Error('CREATE_ERROR'));
           await createUser(req, res);
+        });
+        test('Then handleError call with 500', async () => {
           expect(res.status).toHaveBeenCalledWith(500);
+        });
+        test('Then handleError send', () => {
           expect(res.send.mock.calls[0][0]).toBe('CREATE_ERROR');
         });
       });
@@ -59,10 +66,14 @@ describe('UserController', () => {
         });
       });
       describe('And User.find rejects', () => {
-        test('Then handleError call with 500', async () => {
+        beforeEach(async () => {
           User.find.mockRejectedValue(new Error('SERVER_ERROR'));
           await getAllUsers(req, res);
+        });
+        test('Then handleError call with 500', async () => {
           expect(res.status).toHaveBeenCalledWith(500);
+        });
+        test('Then handleError send', () => {
           expect(res.send.mock.calls[0][0]).toBe('SERVER_ERROR');
         });
       });
@@ -74,7 +85,7 @@ describe('UserController', () => {
       params: { userId: 1 },
       body: { }
     };
-    describe('And the User.findByIdAndUpdate', () => {
+    describe('And the User.findByIdAndUpdate resolves', () => {
       test('Then call send', async () => {
         User.findByIdAndUpdate.mockResolvedValue({ });
         await updatedUserById(req, res);
@@ -83,10 +94,14 @@ describe('UserController', () => {
       });
     });
     describe('And User.findByIdAndUpdate rejects', () => {
-      test('Then handleError call with 404', async () => {
+      beforeEach(async () => {
         User.findByIdAndUpdate.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
         await updatedUserById(req, res);
+      });
+      test('Then handleError call with 404', async () => {
         expect(res.status).toHaveBeenCalledWith(404);
+      });
+      test('Then handleError send', () => {
         expect(res.send.mock.calls[0][0]).toBe('USER_NOT_FOUND_ERROR');
       });
     });
@@ -103,19 +118,24 @@ describe('UserController', () => {
       });
     });
     describe('And User.findById rejects', () => {
-      test('Then handleError call with 404', async () => {
+      beforeEach(async () => {
         User.findById.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
         await getUserById(req, res);
+      });
+      test('Then handleError call with 404', async () => {
         expect(res.status).toHaveBeenCalledWith(404);
+      });
+      test('Then handleError send', () => {
         expect(res.send.mock.calls[0][0]).toBe('USER_NOT_FOUND_ERROR');
       });
     });
   });
+
   describe('Given a deleteUser controller', () => {
     req = {
       params: { userId: 1 }
     };
-    describe('And User.findByIdAndDelete', () => {
+    describe('And User.findByIdAndDelete resolves', () => {
       test('Then call send', async () => {
         User.findByIdAndDelete.mockResolvedValue({ });
         await deleteUser(req, res);
@@ -123,11 +143,32 @@ describe('UserController', () => {
       });
     });
     describe('And User.findByIdAndDelete rejects', () => {
-      test('Then handleError call with 404', async () => {
+      beforeEach(async () => {
         User.findByIdAndDelete.mockRejectedValue(new Error('USER_NOT_FOUND_ERROR'));
         await deleteUser(req, res);
+      });
+      test('Then handleError call with 404', async () => {
         expect(res.status).toHaveBeenCalledWith(404);
+      });
+      test('Then handleError send', () => {
         expect(res.send.mock.calls[0][0]).toBe('USER_NOT_FOUND_ERROR');
+      });
+    });
+
+    describe('Given an updateUserData controller', () => {
+      beforeEach(() => {
+        req = {
+          params: { userId: 1 },
+          body: { packCardId: ' ', type: 'cardsAdquired' }
+        };
+      });
+      describe('And userFound.data.find resolves', () => {
+        test('Then call send', async () => {
+          User.findById.mockResolvedValue({ data: [{ packId: 4 }] });
+          DataChanges.mockReturnValue();
+          await updateUserData(req, res);
+          expect(res.json).toHaveBeenCalled();
+        });
       });
     });
   });

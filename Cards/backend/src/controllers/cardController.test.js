@@ -3,9 +3,12 @@ const {
   updateCardById,
   deleteCard
 } = require('./cardController');
+
 const Card = require('../models/cardModel');
+const PackCard = require('../models/packCardModel');
 
 jest.mock('../models/cardModel');
+jest.mock('../models/PackCardMOdel');
 
 describe('CardController', () => {
   let req;
@@ -24,8 +27,12 @@ describe('CardController', () => {
     };
     describe('When is invoked', () => {
       describe('And the Card.create resolves', () => {
-        test('then call send', async () => {
+        test('Then call send', async () => {
           Card.create.mockResolvedValue({ });
+          PackCard.findById.mockResolvedValue({
+            packCard: [],
+            save: jest.fn()
+          });
           await createCard(req, res);
           expect(res.json).toHaveBeenCalled();
         });

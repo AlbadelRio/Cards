@@ -1,16 +1,18 @@
 const { Router } = require('express');
-const{ createCard, updateCardById, deleteCard} = require ('../controllers/cardController');
-
+const passport = require('passport');
+const { createCard, updateCardById, deleteCard } = require('../controllers/cardController');
 
 const cardRouter = new Router();
 
 cardRouter
-    .route('/')
-    .post(createCard);
-    
-cardRouter
-    .route('/:cardId')
-    .put(updateCardById)
-    .delete(deleteCard);
+  .route('/')
+  .all(passport.authenticate('jwt', { session: false }))
+  .post(createCard);
 
-module.exports= cardRouter;
+cardRouter
+  .route('/:cardId')
+  .all(passport.authenticate('jwt', { session: false }))
+  .put(updateCardById)
+  .delete(deleteCard);
+
+module.exports = cardRouter;

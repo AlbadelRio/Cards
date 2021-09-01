@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\adelr\\Desktop\\Skylab-FinalProject\\CardsProject\\Alba_Final-Project-202107\\Cards\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-or\\values-or.xml",
+            "outputFile": "C:\\Users\\adelr\\Desktop\\Skylab-FinalProject\\CardsProject\\Alba_Final-Project-202107\\Cards\\frontend\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-or\\values-or.xml",
             "map": [
                 {
                     "source": "C:\\Users\\adelr\\.gradle\\caches\\transforms-3\\384a804ddf61add8f1298a3b8f500b71\\transformed\\core-1.1.0\\res\\values-or\\values-or.xml",
