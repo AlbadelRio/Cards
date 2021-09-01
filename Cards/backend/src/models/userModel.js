@@ -3,6 +3,7 @@ const { model, Schema } = require('mongoose');
 const userSchema = Schema({
   username: String,
   email: String,
+  password: String,
   location: String,
   image: String,
   data: [{
@@ -16,5 +17,9 @@ const userSchema = Schema({
     }]
   }]
 });
+function isValidPassword(password) {
+  return password === this.password;
+}
+userSchema.methods.isValidPassword = isValidPassword;
 
 module.exports = model('User', userSchema);
