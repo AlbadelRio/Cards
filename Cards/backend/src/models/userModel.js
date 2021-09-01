@@ -10,9 +10,9 @@ const userSchema = Schema({
     cardsAdquired: [String],
     difficultCards: [String],
     stats: [{
-      date: Date,
-      timePlayed: Number,
-      percentage: Number
+      date: { type: Date, default: new Date() },
+      timePlayed: [Number],
+      percentage: [Number]
     }]
   }]
 });

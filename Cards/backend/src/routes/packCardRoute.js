@@ -1,15 +1,27 @@
 const { Router } = require('express');
-const { createPackCard, deletePackCard, findRandomBySubject } = require('../controllers/packCardController');
+const {
+  createPackCard,
+  deletePackCard,
+  findRandomBySubject,
+  updatePackCard,
+  findAllPackCards,
+  findPackCardById
+} = require('../controllers/packCardController');
 
 const packCardRouter = new Router();
 
 packCardRouter
   .route('/')
   .post(createPackCard)
-  .get(findRandomBySubject);
+  .get(findAllPackCards);
 
 packCardRouter
   .route('/:packCardId')
-  .delete(deletePackCard);
+  .delete(deletePackCard)
+  .post(updatePackCard)
+  .get(findPackCardById);
+packCardRouter
+  .route('/:subject')
+  .get(findRandomBySubject);
 
 module.exports = packCardRouter;

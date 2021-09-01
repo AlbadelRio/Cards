@@ -1,5 +1,10 @@
 const {
-  createPackCard, deletePackCard, findRandomBySubject
+  createPackCard,
+  deletePackCard,
+  findRandomBySubject,
+  findAllPackCards,
+  findPackCardById,
+  updatePackCard
 } = require('./packCardController');
 
 const PackCard = require('../models/packCardModel');
@@ -32,10 +37,14 @@ describe('packCardController', () => {
         });
       });
       describe('And PackCard.create rejects', () => {
-        test('Then handleError call with 500', async () => {
+        beforeEach(async () => {
           PackCard.create.mockRejectedValue(new Error('SERVER_ERROR'));
           await createPackCard(req, res);
+        });
+        test('Then handleError call with 500', async () => {
           expect(res.status).toHaveBeenCalledWith(500);
+        });
+        test('Then handleError call send', () => {
           expect(res.send.mock.calls[0][0]).toBe('SERVER_ERROR');
         });
       });
@@ -55,10 +64,14 @@ describe('packCardController', () => {
         });
       });
       describe('And PackCard.findByIdAndDelete rejects', () => {
-        test('Then HandleError call with 500', async () => {
+        beforeEach(async () => {
           PackCard.findByIdAndDelete.mockRejectedValue(new Error('SERVER_ERROR'));
           await deletePackCard(req, res);
+        });
+        test('Then HandleError call with 500', () => {
           expect(res.status).toHaveBeenCalledWith(500);
+        });
+        test('Then HandleError call send', () => {
           expect(res.send.mock.calls[0][0]).toBe('SERVER_ERROR');
         });
       });
@@ -87,6 +100,87 @@ describe('packCardController', () => {
               .mockReturnValue({ populate: jest.fn().mockRejectedValue(new Error('SERVER_ERROR')) })
           });
           await findRandomBySubject(req, res);
+        });
+        test('Then handleError call with 500', () => {
+          expect(res.status).toHaveBeenCalledWith(500);
+        });
+        test('Then handleError send', () => {
+          expect(res.send.mock.calls[0][0]).toBe('SERVER_ERROR');
+        });
+      });
+    });
+
+    describe('Given a findAllPackCards controller', () => {
+      beforeEach(() => {
+        req = {
+          params: { packCardId: 1 }
+        };
+      });
+      describe('And PackCard.find', () => {
+        test('Then call send', async () => {
+          PackCard.find.mockResolvedValue({ });
+          await findAllPackCards(req, res);
+          expect(res.json).toHaveBeenCalled();
+        });
+      });
+      describe('And PackCard.find rejects', () => {
+        beforeEach(async () => {
+          PackCard.find.mockRejectedValue(new Error('SERVER_ERROR'));
+          await findAllPackCards(req, res);
+        });
+        test('Then handleError call with 500', () => {
+          expect(res.status).toHaveBeenCalledWith(500);
+        });
+        test('Then handleError send', () => {
+          expect(res.send.mock.calls[0][0]).toBe('SERVER_ERROR');
+        });
+      });
+    });
+
+    describe('Given a findPackCardById controller', () => {
+      beforeEach(() => {
+        req = {
+          params: { packCardId: 1 }
+        };
+      });
+      describe('And Packard.findById resolves', () => {
+        test('Then call send', async () => {
+          PackCard.findById.mockReturnValue({ populate: jest.fn().mockResolvedValue({ }) });
+          await findPackCardById(req, res);
+          expect(res.json).toHaveBeenCalled();
+        });
+      });
+      describe('And Packard.findById rejects', () => {
+        beforeEach(async () => {
+          PackCard.findById.mockReturnValue({ populate: jest.fn().mockRejectedValue(new Error('SERVER_ERROR')) });
+          await findPackCardById(req, res);
+        });
+        test('Then handleError call with 500', () => {
+          expect(res.status).toHaveBeenCalledWith(500);
+        });
+        test('Then handleError send', () => {
+          expect(res.send.mock.calls[0][0]).toBe('SERVER_ERROR');
+        });
+      });
+    });
+
+    describe('Given an updatePackCard controller', () => {
+      describe('And PackCard.findByIdAndUpdate resolves', () => {
+        beforeEach(() => {
+          req = {
+            params: { packCardId: 1 }
+          };
+        });
+        test('Then call send', async () => {
+          PackCard.findByIdAndUpdate.mockResolvedValue({ });
+          await updatePackCard(req, res);
+          expect(res.json).toHaveBeenCalled();
+        });
+      });
+      describe('And PackCard.findByIdAndUpdate rejects', () => {
+        beforeEach(async () => {
+          PackCard.findByIdAndUpdate.mockRejectedValue(new Error('SERVER_ERROR'));
+          await updatePackCard(req, res);
         });
         test('Then handleError call with 500', () => {
           expect(res.status).toHaveBeenCalledWith(500);
