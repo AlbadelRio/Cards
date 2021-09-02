@@ -2,7 +2,7 @@
 import actionTypes from '../actions/actionTypes';
 
 export default function authReducer(
-  authInitialState: any = false,
+  authInitialState:any = false,
   action:any
 ) {
   let nextAuthState = authInitialState;

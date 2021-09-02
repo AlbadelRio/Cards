@@ -3,7 +3,7 @@ import axios from 'axios';
 import actionTypes from './actionTypes';
 
 export function login(user:any) {
-  return async (dispatch: any) => {
+  return async (dispatch:any) => {
     try {
       const { data } = await axios.post('api/login', { user });
       return dispatch({
