@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   View, TextInput, StyleSheet, Button
 } from 'react-native';
-import { login } from '../../redux/actions/actionCreators';
 
 const styles = StyleSheet.create({
 
@@ -11,11 +10,11 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10
-
   }
 });
 
-export default function Profile() {
+export default function Profile({ navigation }:any) {
+  const loginHandler = () => { navigation.navigate('Discover'); };
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   return (
@@ -34,7 +33,7 @@ export default function Profile() {
       />
       <Button
         title="Right button"
-        onPress={() => login()}
+        onPress={loginHandler}
       />
     </View>
   );
