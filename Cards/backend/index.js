@@ -3,12 +3,14 @@ require('dotenv').config();
 const debug = require('debug')('cards');
 const chalk = require('chalk');
 const morgan = require('morgan');
+const cors = require('cors');
 const passportConfig = require('./src/config/passportConfig');
 require('./src/config/mongooseConfig');
 
 const server = express();
 const port = process.env.PORT || 5002;
 
+server.use(cors());
 server.use(morgan('dev'));
 server.use(express.json());
 passportConfig(server);

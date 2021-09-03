@@ -5,10 +5,10 @@ connect(
   process.env.DDBB_URL,
   {
     useUnifiedTopology: true,
-    useNewUrlParser: true,
-  },
+    useNewUrlParser: true
+  }
 )
   .then(
     () => debug('Database connection stablished'),
-    (error) => debug(error),
+    (error) => debug(error)
   );
