@@ -5,7 +5,7 @@ import actionTypes from './actionTypes';
 export function login(user:any) {
   return async (dispatch:any) => {
     try {
-      const { data } = await axios.post('api/login', { user });
+      const { data } = await axios.post('http://192.168.0.103:5000/login', user);
       return dispatch({
         type: actionTypes.AUTH_LOGIN,
         user: data
