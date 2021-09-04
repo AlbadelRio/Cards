@@ -1,43 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  View, TextInput, StyleSheet, Button
+  View, TextInput, StyleSheet, TouchableOpacity, Text
 } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/actions/actionCreators';
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 300,
+    height: 300
 
+  },
   email: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10
+    width: 300,
+    height: 50,
+    padding: 30,
+    backgroundColor: '#DCDCDC',
+    flex: 1,
+    alignSelf: 'center'
+
+  },
+  button: {
+    width: 300,
+    padding: 25,
+    height: 70,
+    marginTop: 30,
+    backgroundColor: '#5EBBB0',
+    flex: 1,
+    alignSelf: 'center'
   }
 });
 
 export default function Profile({ navigation }:any) {
-  const loginHandler = () => { navigation.navigate('Discover'); };
+  const dispatch = useDispatch();
+  function handleLogin(emailText:any, passwordText:any) {
+    dispatch(login({
+      email: emailText,
+      password: passwordText
+    }));
+  }
+  // const loginHandler = () => { navigation.navigate('Discover'); };
   const newAccountHandler = () => { navigation.navigate('CreateAccount'); };
-  // const [email, setEmail] = useState();
-  // const [password, setPassword] = useState();
+  const [emailText, setEmail] = useState('');
+  const [passwordText, setPassword] = useState('');
   return (
     <View>
-      <TextInput
-        style={styles.email}
-        // value={email}
-        // onChangeText={() => setEmail()}
-        placeholder="email"
-      />
-      <TextInput
-        style={styles.email}
-        // value={password}
-        // onChangeText={(event) => setPassword(event.target.value)}
-        placeholder="password"
-      />
-      <Button
-        title="GET STARTED"
-        onPress={loginHandler}
-      />
-      <Button
-        title="NEW ACCOUNT"
+      <View style={styles.container}>
+        <TextInput
+          style={styles.email}
+          value={emailText}
+          onChangeText={(text:any) => setEmail(text)}
+          placeholder="email"
+        />
+
+        <TextInput
+          style={styles.email}
+          value={passwordText}
+          onChangeText={(text:any) => setPassword(text)}
+          placeholder="password"
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => { handleLogin(emailText, passwordText); }}
+        >
+          <Text>GET STARTED</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
         onPress={newAccountHandler}
       />
     </View>
