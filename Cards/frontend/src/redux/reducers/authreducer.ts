@@ -1,4 +1,3 @@
-// import authInitialState from '../../utils/constants/authInitialState';
 import actionTypes from '../actions/actionTypes';
 
 export default function authReducer(

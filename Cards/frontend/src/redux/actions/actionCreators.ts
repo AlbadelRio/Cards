@@ -5,12 +5,12 @@ import actionTypes from './actionTypes';
 export function login(user:any) {
   return async (dispatch:any) => {
     try {
-      const { data } = await axios.post('http://192.168.0.103:5000/login', user);
+      const { data } = await axios.post('http://192.168.0.24:5000/login', user);
       return dispatch({
         type: actionTypes.AUTH_LOGIN,
         user: data
       });
-    } catch (error) {
+    } catch (error:any) {
       if (error?.response?.status === 401) {
         return dispatch({
           type: actionTypes.AUTH_LOGIN_ERROR,
