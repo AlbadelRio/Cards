@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   pressableText: {
-    fontSize: 18,
+    fontSize: 14,
     color: '#E5E5E5',
     marginTop: 35,
     marginBottom: 20,
@@ -69,8 +69,10 @@ export default function Profile({ navigation }:any) {
   }
 
   const newAccountHandler = () => { navigation.navigate('CreateAccount'); };
-  const [emailText, setEmail] = useState();
-  const [passwordText, setPassword] = useState();
+  const [emailText, setEmail] = useState('');
+  console.log(emailText);
+  const [passwordText, setPassword] = useState('');
+  console.log(passwordText);
   return (
     <View
       style={styles.component}
