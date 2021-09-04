@@ -359,3 +359,8 @@ auth-data.js
 
 /.expo
 .expo/
+
+# Emulator configs
+
+**/android
+**/ios
