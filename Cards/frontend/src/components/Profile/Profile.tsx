@@ -3,7 +3,7 @@ import {
   View, TextInput, StyleSheet, TouchableOpacity, Text, Pressable
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { login } from '../../redux/actions/actionCreators';
+import { login } from '../../redux/actions/authActionCreators';
 
 const styles = StyleSheet.create({
   component: {
@@ -70,9 +70,7 @@ export default function Profile({ navigation }:any) {
 
   const newAccountHandler = () => { navigation.navigate('CreateAccount'); };
   const [emailText, setEmail] = useState('');
-  console.log(emailText);
   const [passwordText, setPassword] = useState('');
-  console.log(passwordText);
   return (
     <View
       style={styles.component}
