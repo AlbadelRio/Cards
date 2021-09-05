@@ -1,6 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 
-interface Action {
+type Action = {
     type:String,
     packCards:[],
     randomPackCard:[]
@@ -8,7 +8,7 @@ interface Action {
 export default function packardsReducer(packCards = [], action:Action) {
   let packCardResult = packCards;
   switch (action.type) {
-    case actionTypes.LOAD_PACKARDS:
+    case actionTypes.LOAD_PACKCARDS:
       packCardResult = action.packCards;
       break;
     case actionTypes.GETRANDOM_PACKCARD:
