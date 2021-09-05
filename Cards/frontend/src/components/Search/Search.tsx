@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, Pressable, TextInput, TouchableOpacity, SectionList
+  View, Text, Pressable, TextInput
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';

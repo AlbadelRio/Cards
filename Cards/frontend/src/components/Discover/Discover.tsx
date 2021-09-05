@@ -10,12 +10,17 @@ import styles from './discoverStlyles';
 export default function Discover({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
   const packCards = useSelector((store:any) => store.packardsReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
   }, []);
 
+  const filteredPackCard = Array.from(new Set(packCards.map((packCard:any) => packCard.subject)))
+    .map((subject) => ({
+      subject
+    }));
   const nextHandler = () => { navigation.navigate('Search'); };
   const SkipHandler = () => { navigation.navigate('Cards'); };
 
@@ -38,7 +43,7 @@ export default function Discover({ navigation }:any) {
       <View
         style={styles.containerList}
       >
-        {packCards.map((element:any) => (
+        {filteredPackCard.map((element:any) => (
           <Text key={element._id}>
             {element.subject}
           </Text>
