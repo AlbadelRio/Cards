@@ -5,33 +5,46 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
-
-/* type PackCard = {
-  _id:string,
-  title: string,
-  image: string,
-  subject: string,
-  public: boolean,
-  user: Array<{}>,
-  packCards: Array<{}>
-} */
+import styles from './discoverStlyles';
 
 export default function Discover({ navigation }:any) {
+  const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
+  const packCards = useSelector((store:any) => store.packardsReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadPackcards(token, refreshToken));
+  }, []);
+
   const nextHandler = () => { navigation.navigate('Search'); };
   const SkipHandler = () => { navigation.navigate('Cards'); };
-  const packCards = useSelector((store:any) => store.packCards);
-  const dispatch = useDispatch();
-  console.log(packCards);
-  useEffect(() => {
-    dispatch(loadPackcards());
-  }, []);
 
   return (
 
     <View>
-      <Text>Discover</Text>
-      <Text>Choose from these categories what interets you the most</Text>
+      <Text
+        style={styles.title}
+      >
+        DISCOVER
 
+      </Text>
+      <Text
+        style={styles.subtitle}
+      >
+        Choose from these categories what interets you the most
+
+      </Text>
+
+      <View
+        style={styles.containerList}
+      >
+        {packCards.map((element:any) => (
+          <Text key={element._id}>
+            {element.subject}
+          </Text>
+        ))}
+
+      </View>
       <Pressable
         onPress={SkipHandler}
       >

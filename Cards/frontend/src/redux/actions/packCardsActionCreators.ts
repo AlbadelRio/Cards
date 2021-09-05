@@ -1,15 +1,19 @@
 import axios from 'axios';
-
+import { userRefreshToken } from './authActionCreators';
 import actionTypes from './actionTypes';
 
-export function loadPackcards() {
+export function loadPackcards(token:any, refreshtoken:any) {
   return async (dispatch:any) => {
-    const { data } = await axios.get('http://192.168.0.23:5000/api/packCards');
-    console.log(data+'hoola');
-    return dispatch({
-      type: actionTypes.LOAD_PACKCARDS,
-      packCards: data
-    });
+    if (token) {
+      const { data } = await axios.get('http://192.168.0.24:5000/api/packCards', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      return dispatch({
+        type: actionTypes.LOAD_PACKCARDS,
+        packCards: data
+      });
+    }
+    return userRefreshToken(refreshtoken);
   };
 }
 
