@@ -57,6 +57,7 @@ async function updateUserPackCard({ params: { packCardId }, body }, res) {
     const updatedPackCard = await PackCard.findById(packCardId);
     updatedPackCard.subscriptors.push(dataToUpdate);
     updatedPackCard.save();
+    res.sendStatus(200);
   } catch (error) {
     handleError.call(res, error);
   }

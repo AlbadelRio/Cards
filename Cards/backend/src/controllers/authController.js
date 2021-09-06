@@ -33,7 +33,7 @@ function createRefreshToken({ body: { refreshToken } }, res) {
     const token = jwt.sign(
       { user: data },
       process.env.JWT_SECRET,
-      { expiresIn: '1m' }
+      { expiresIn: '60m' }
     );
 
     return res.json({
@@ -48,7 +48,7 @@ async function logIn({ user }, res) {
   const token = jwt.sign(
     { user: data },
     process.env.JWT_SECRET,
-    { expiresIn: '1m' }
+    { expiresIn: '60m' }
   );
   const refreshToken = jwt.sign(
     { user: data },
@@ -59,7 +59,8 @@ async function logIn({ user }, res) {
 
   return res.json({
     token,
-    refreshToken
+    refreshToken,
+    user
   });
 }
 module.exports = {
