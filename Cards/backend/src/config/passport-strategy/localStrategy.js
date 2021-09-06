@@ -11,8 +11,8 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const profile = await Profile.create({ email, password });
-        return done(null, profile);
+        // const profile = await Profile.create({ email, password });
+        return done(null, true);
       } catch (error) {
         return done(error);
       }

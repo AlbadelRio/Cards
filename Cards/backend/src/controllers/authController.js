@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
 let refreshTokens = [];
-async function registerUser({ user }, res) {
+async function registerUser({ body }, res) {
   try {
-    const createdUser = await User.create(user);
+    const createdUser = await User.create(body);
     res.json(createdUser);
   } catch (error) {
     res.status(404);
