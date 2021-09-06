@@ -12,7 +12,7 @@ export function login(user:User) {
   return async (dispatch:any) => {
     console.log(dispatch);
     try {
-      const { data } = await axios.post('http://192.168.0.24:5000/login', user);
+      const { data } = await axios.post('http://192.168.0.103:5000/login', user);
       console.log('login:');
       console.log(data);
       return dispatch({
@@ -37,7 +37,7 @@ export function login(user:User) {
 export function userRefreshToken(refreshToken:string) {
   return async (dispatch:any) => {
     try {
-      const { data } = await axios.post('http://192.168.0.24:5000/refreshToken', { refreshToken });
+      const { data } = await axios.post('http://192.168.0.103:5000/refreshToken', { refreshToken });
       console.log('data userRefreshToken');
       console.log(data);
       return dispatch({

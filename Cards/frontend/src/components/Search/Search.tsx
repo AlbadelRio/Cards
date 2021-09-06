@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, Pressable, TextInput
+  View, Text, Pressable, TextInput, TouchableOpacity
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
@@ -17,7 +17,7 @@ export default function Profile({ navigation }:any) {
   }, []);
   const onChangeSearch = (query:any) => setSearchQuery(query);
   const cardsHandler = () => { navigation.navigate('Cards'); };
-  console.log(packCards);
+
   return (
     <View>
       <Text>SEARCH</Text>
@@ -29,8 +29,8 @@ export default function Profile({ navigation }:any) {
       />
 
       {packCards
-        .filter((value:any) => value.subject
-          .includes(searchQuery)
+        .filter((value:any) => value.subject.toLowerCase()
+          .includes(searchQuery.toLowerCase())
           || value.title
             .includes(searchQuery)).map((filteredValue:any) => (
               <Text>
@@ -42,8 +42,13 @@ export default function Profile({ navigation }:any) {
                   {filteredValue.subject}
                   {' '}
                   {filteredValue.user[0].username}
-
                 </Text>
+                <TouchableOpacity
+                  onPress={}
+                >
+                  <Text>+</Text>
+
+                </TouchableOpacity>
               </Text>
         ))}
       <Pressable

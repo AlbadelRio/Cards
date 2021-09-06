@@ -51,7 +51,6 @@ async function updateUserData({ params: { userId }, body }, res) {
     const userFound = await User.findById(userId);
     const userData = userFound.data.find((data) => data.packId === body.packCardId);
     DataChanges(body, userData, userFound);
-    console.log('paso');
     res.json(userFound);
   } catch (error) {
     handleError.call(res, error, 404);

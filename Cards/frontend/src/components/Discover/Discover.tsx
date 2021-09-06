@@ -26,46 +26,63 @@ export default function Discover({ navigation }:any) {
 
   return (
 
-    <View>
-      <Text
-        style={styles.title}
+    <View
+      style={{ flex: 2 }}
+    >
+      <View
+        style={{ flex: 1 }}
       >
-        DISCOVER
+        <Text
+          style={styles.title}
+        >
+          DISCOVER
 
-      </Text>
-      <Text
-        style={styles.subtitle}
-      >
-        Choose from these categories what interets you the most
+        </Text>
+        <Text
+          style={styles.subtitle}
+        >
+          Choose from these categories what interets you the most
 
-      </Text>
-
+        </Text>
+      </View>
       <View
         style={styles.containerList}
       >
         {filteredPackCard.map((element:any) => (
-          <Text key={element._id}>
+          <Text
+            key={element._id}
+            style={styles.subjects}
+
+          >
             {element.subject}
           </Text>
         ))}
 
       </View>
-      <Pressable
-        onPress={SkipHandler}
+      <View
+        style={styles.bar}
       >
-        <Text>
-          SKIP
+        <Pressable
+          onPress={SkipHandler}
+        >
+          <Text
+            style={styles.texBar}
+          >
+            SKIP
 
-        </Text>
-      </Pressable>
-      <Pressable
-        onPress={nextHandler}
-      >
-        <Text>
-          NEXT
+          </Text>
+        </Pressable>
+        <Pressable
+          onPress={nextHandler}
+        >
+          <Text
+            style={styles.texBar}
+          >
+            NEXT
 
-        </Text>
-      </Pressable>
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }

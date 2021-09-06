@@ -5,7 +5,7 @@ import actionTypes from './actionTypes';
 export function loadPackcards(token:any, refreshtoken:any) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.get('http://192.168.0.24:5000/api/packCards', {
+      const { data } = await axios.get('http://192.168.0.103:5000/api/packCards', {
         headers: { Authorization: `Bearer ${token}` }
       });
       return dispatch({
@@ -19,7 +19,7 @@ export function loadPackcards(token:any, refreshtoken:any) {
 
 export function getRandomPackCardBySubject(subject:string) {
   return async (dispatch:any) => {
-    const { data } = await axios.get(`http://192.168.0.23:5000/api/packCards?subject=${subject}`);
+    const { data } = await axios.get(`http://192.168.0.103:5000/api/packCards?subject=${subject}`);
     return dispatch({
       type: actionTypes.GETRANDOM_PACKCARD,
       randomPackCard: data

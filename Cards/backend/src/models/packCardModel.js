@@ -6,7 +6,8 @@ const packCardSchema = Schema({
   subject: String,
   public: Boolean,
   user: { type: Schema.Types.ObjectId, ref: 'User' },
-  packCards: [{ type: Schema.Types.ObjectId, ref: 'Cards' }]
+  packCards: [{ type: Schema.Types.ObjectId, ref: 'Card' }],
+  subscriptors: []
 
 });
 

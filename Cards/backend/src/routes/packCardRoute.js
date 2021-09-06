@@ -4,7 +4,7 @@ const {
   createPackCard,
   deletePackCard,
   findRandomBySubject,
-  updatePackCard,
+  updateUserPackCard,
   findAllPackCards,
   findPackCardById
 } = require('../controllers/packCardController');
@@ -21,7 +21,7 @@ packCardRouter
   .route('/:packCardId')
   .all(passport.authenticate('jwt', { session: false }))
   .delete(deletePackCard)
-  .post(updatePackCard)
+  .put(updateUserPackCard)
   .get(findPackCardById);
 packCardRouter
   .route('/:subject')
