@@ -6,7 +6,7 @@ type Action = {
     randomPackCard:[],
     message:string
 }
-export default function packardsReducer(packCards:any, action:Action) {
+export default function packardsReducer(packCards = [], action:Action) {
   let packCardResult = packCards;
   switch (action.type) {
     case actionTypes.LOAD_PACKCARDS:

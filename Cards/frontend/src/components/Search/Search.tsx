@@ -8,7 +8,7 @@ import { loadPackcards, subscribeToPackCard } from '../../redux/actions/packCard
 
 export default function Search({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
-  const { userId } = useSelector((store:any) => store.auth._id);
+  const userId = useSelector((store:any) => store.auth);
   console.log(userId);
   const packCards = useSelector((store:any) => store.packardsReducer);
   const [searchQuery, setSearchQuery] = useState('');
