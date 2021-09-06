@@ -1,9 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, Pressable, TextInput, TouchableOpacity
+  View, Text, Pressable, TextInput, TouchableOpacity, ToastAndroid
 } from 'react-native';
-import Toast from 'react-native-toast-message';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards, subscribeToPackCard } from '../../redux/actions/packCardsActionCreators';
 
@@ -17,6 +16,7 @@ export default function Search({ navigation }:any) {
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
   }, []);
+
   const onChangeSearch = (query:any) => setSearchQuery(query);
   const cardsHandler = () => { navigation.navigate('Cards'); };
 
@@ -48,10 +48,11 @@ export default function Search({ navigation }:any) {
                 <TouchableOpacity
                   onPress={() => {
                     subscribeToPackCard(token, refreshToken, userId, filteredValue._id);
-                    Toast.show({
-                      text1: 'Hello',
-                      text2: 'This is some something 👋'
-                    });
+                    ToastAndroid.showWithGravity(
+                      'Correctly Added!',
+                      ToastAndroid.SHORT,
+                      ToastAndroid.CENTER
+                    );
                   }}
 
                 >
