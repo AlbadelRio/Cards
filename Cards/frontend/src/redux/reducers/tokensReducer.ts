@@ -12,9 +12,6 @@ type Token = {
 }
 
 export default function tokensReducer(tokens = {}, action:any) {
-  console.log('action tokensReducer');
-  console.log(action.type);
-  console.log(action.user);
   let newTokens:any = tokens;
 
   switch (action.type) {
@@ -23,8 +20,7 @@ export default function tokensReducer(tokens = {}, action:any) {
         token: action.user.token,
         refreshToken: action.user.refreshToken
       };
-      console.log(newTokens);
-      console.log(action.user.refreshToken);
+
       break;
 
     case actionTypes.REFRESH_TOKEN:

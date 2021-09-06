@@ -4,10 +4,12 @@ import {
   View, Text, Pressable, TextInput, TouchableOpacity
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
+import { loadPackcards, subscribeToPackCard } from '../../redux/actions/packCardsActionCreators';
 
-export default function Profile({ navigation }:any) {
+export default function Search({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
+  const { userId } = useSelector((store:any) => store.auth._id);
+  console.log(userId);
   const packCards = useSelector((store:any) => store.packardsReducer);
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
@@ -44,7 +46,9 @@ export default function Profile({ navigation }:any) {
                   {filteredValue.user[0].username}
                 </Text>
                 <TouchableOpacity
-                  onPress={}
+                  onPress={() => {
+                    subscribeToPackCard(token, refreshToken, userId, filteredValue._id);
+                  }}
                 >
                   <Text>+</Text>
 

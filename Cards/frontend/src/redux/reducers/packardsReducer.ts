@@ -3,9 +3,10 @@ import actionTypes from '../actions/actionTypes';
 type Action = {
     type:String,
     packCards:[],
-    randomPackCard:[]
+    randomPackCard:[],
+    message:string
 }
-export default function packardsReducer(packCards = [], action:Action) {
+export default function packardsReducer(packCards:any, action:Action) {
   let packCardResult = packCards;
   switch (action.type) {
     case actionTypes.LOAD_PACKCARDS:
