@@ -1,13 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import {
-  View, Text, Pressable
+  View, Text
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
 import styles from './discoverStlyles';
 
-export default function Discover({ navigation }:any) {
+export default function Discover() {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
   const packCards = useSelector((store:any) => store.packardsReducer);
 
@@ -21,8 +21,6 @@ export default function Discover({ navigation }:any) {
     .map((subject) => ({
       subject
     }));
-  const nextHandler = () => { navigation.navigate('Search'); };
-  const SkipHandler = () => { navigation.navigate('Cards'); };
 
   return (
 
@@ -58,30 +56,6 @@ export default function Discover({ navigation }:any) {
           </Text>
         ))}
 
-      </View>
-      <View
-        style={styles.bar}
-      >
-        <Pressable
-          onPress={SkipHandler}
-        >
-          <Text
-            style={styles.texBar}
-          >
-            SKIP
-
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={nextHandler}
-        >
-          <Text
-            style={styles.texBar}
-          >
-            NEXT
-
-          </Text>
-        </Pressable>
       </View>
     </View>
   );
