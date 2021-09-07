@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   component: {
+    height: '100%',
     backgroundColor: '#222222'
   },
   title: {
@@ -45,7 +46,7 @@ export default StyleSheet.create({
   pressableText: {
     fontSize: 14,
     color: '#E5E5E5',
-    marginTop: 35,
+    marginTop: 65,
     marginBottom: 20,
     marginRight: 30,
     textAlign: 'right'
