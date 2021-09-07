@@ -3,7 +3,7 @@ import {
   View, Text, Button
 } from 'react-native';
 
-export default function Profile({ navigation }:any) {
+export default function Cards({ navigation }:any) {
   const searchHandler = () => { navigation.navigate('Search'); };
 
   return (
