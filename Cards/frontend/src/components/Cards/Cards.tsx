@@ -1,18 +1,12 @@
 import React from 'react';
 import {
-  View, Text, Button
+  View, Text
 } from 'react-native';
 
-export default function Profile({ navigation }:any) {
-  const searchHandler = () => { navigation.navigate('Search'); };
-
+export default function Profile() {
   return (
     <View>
       <Text>Cards Section</Text>
-      <Button
-        title="Search"
-        onPress={searchHandler}
-      />
 
     </View>
   );
