@@ -29,11 +29,14 @@ export function getRandomPackCardBySubject(subject:string) {
 
 export function subscribeToPackCard(token:any, refreshtoken:any, userId:string, packCardId:string) {
   return async (dispatch:any) => {
-    await axios.put(`http://192.168.0.103:5000/api/packCards/${packCardId}`, {
-      body: { user: userId }
-    });
-    return dispatch({
-      type: actionTypes.ADD_SUBSCRIPTOR_PACKCARD
-    });
+    if (token) {
+      await axios.put(`http://192.168.0.103:5000/api/packCards/${packCardId}`, { userId }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      return dispatch({
+        type: actionTypes.ADD_SUBSCRIPTOR_PACKCARD
+      });
+    }
+    return userRefreshToken(refreshtoken);
   };
 }

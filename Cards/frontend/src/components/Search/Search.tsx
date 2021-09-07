@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, TextInput, TouchableOpacity, ToastAndroid
+  View, Text, TextInput, TouchableOpacity
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards, subscribeToPackCard } from '../../redux/actions/packCardsActionCreators';
@@ -34,8 +34,8 @@ export default function Search() {
           .includes(searchQuery.toLowerCase())
           || value.title
             .includes(searchQuery)).map((filteredValue:any) => (
-              <Text>
-                <Text key={filteredValue._id}>
+              <Text key={filteredValue._id}>
+                <Text>
                   {filteredValue.image}
                   {' '}
                   {filteredValue.title}
@@ -46,12 +46,7 @@ export default function Search() {
                 </Text>
                 <TouchableOpacity
                   onPress={() => {
-                    subscribeToPackCard(token, refreshToken, userId, filteredValue._id);
-                    ToastAndroid.showWithGravity(
-                      'Correctly Added!',
-                      ToastAndroid.SHORT,
-                      ToastAndroid.CENTER
-                    );
+                    dispatch(subscribeToPackCard(token, refreshToken, userId, filteredValue._id));
                   }}
 
                 >
