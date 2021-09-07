@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
+
 import Profile from '../components/Profile/Profile';
 import TabNav from '../components/TabNav/TabNav';
 
@@ -19,8 +20,7 @@ export default function Navigation() {
             ? <Stack.Screen name="Profile" component={Profile} />
             : (
               <>
-
-                <Stack.Screen name="tabNav" component={TabNav} />
+                <Stack.Screen name="TabNav" component={TabNav} />
               </>
             )
         }

@@ -12,6 +12,17 @@ export default function NavTab():any {
 
     <Tab.Navigator
       screenOptions={{ headerShown: false }}
+      style={{
+        tabBarOptions: {
+          activeTintColor: '#e91e63',
+          labelStyle: {
+            fontSize: 12
+          },
+          style: {
+            backgroundColor: 'blue'
+          }
+        }
+      }}
     >
       <Tab.Screen name="HOME" component={Cards} />
       <Tab.Screen name="SEARCH" component={Search} />

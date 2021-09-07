@@ -32,7 +32,7 @@ export default StyleSheet.create({
     width: 300,
     padding: 25,
     height: 70,
-    marginTop: 30,
+    marginTop: 50,
     backgroundColor: '#5EBBB0',
     flex: 1,
     alignSelf: 'center',
@@ -46,7 +46,7 @@ export default StyleSheet.create({
   pressableText: {
     fontSize: 14,
     color: '#E5E5E5',
-    marginTop: 65,
+    marginTop: 60,
     marginBottom: 20,
     marginRight: 30,
     textAlign: 'right'

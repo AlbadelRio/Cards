@@ -1,14 +1,14 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, TextInput, TouchableOpacity
+  View, Text, TextInput, TouchableOpacity, ToastAndroid
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards, subscribeToPackCard } from '../../redux/actions/packCardsActionCreators';
 
 export default function Search() {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
-  const userId = useSelector((store:any) => store.auth);
+  const userId = useSelector((store:any) => store.auth.user.user._id);
   const packCards = useSelector((store:any) => store.packardsReducer);
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export default function Search() {
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
   }, []);
+
   const onChangeSearch = (query:any) => setSearchQuery(query);
 
   return (
@@ -46,7 +47,13 @@ export default function Search() {
                 <TouchableOpacity
                   onPress={() => {
                     subscribeToPackCard(token, refreshToken, userId, filteredValue._id);
+                    ToastAndroid.showWithGravity(
+                      'Correctly Added!',
+                      ToastAndroid.SHORT,
+                      ToastAndroid.CENTER
+                    );
                   }}
+
                 >
                   <Text>+</Text>
 

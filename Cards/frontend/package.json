@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
     "@types/react-redux": "^7.1.18",
@@ -21,6 +22,7 @@
     "react-native-linear-gradient": "^2.5.6",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.6.0",
+    "react-native-toast-message": "^1.4.9",
     "react-native-vector-icons": "^8.1.0",
     "react-navigator": "^0.0.0-0",
     "react-redux": "^7.2.4",
