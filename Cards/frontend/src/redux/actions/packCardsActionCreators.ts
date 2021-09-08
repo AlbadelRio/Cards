@@ -47,6 +47,7 @@ export function createPackCard(token:any, refreshtoken:any, body:any) {
       const { data } = await axios.post('http://192.168.0.103:5000/api/packCards', body, {
         headers: { Authorization: `Bearer ${token}` }
       });
+      console.log(data);
       return dispatch({
         type: actionTypes.CREATE_PACKCARD,
         newPackard: data

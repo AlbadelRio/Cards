@@ -1,16 +1,6 @@
 /* eslint-disable no-unused-vars */
 import actionTypes from '../actions/actionTypes';
 
-type Action = {
-    type:string,
-    data:any
-}
-
-type Token = {
-    token?: string,
-    refreshToken?:string
-}
-
 export default function tokensReducer(tokens = {}, action:any) {
   let newTokens:any = tokens;
 
@@ -33,6 +23,5 @@ export default function tokensReducer(tokens = {}, action:any) {
     default:
       break;
   }
-  console.log(`newtokens:${{ newTokens }}`);
   return newTokens;
 }

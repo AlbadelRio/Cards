@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, TextInput, TouchableOpacity
+  View, Text, TextInput, TouchableOpacity, ScrollView
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards, subscribeToPackCard } from '../../redux/actions/packCardsActionCreators';
@@ -21,16 +21,16 @@ export default function Search() {
 
   return (
     <View>
-      <Text>SEARCH</Text>
+      <ScrollView>
+        <Text>SEARCH</Text>
 
-      <TextInput
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
+        <TextInput
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+        />
 
-      {packCards
-        .filter((value:any) => value.subject.toLowerCase()
+        {packCards?.filter((value:any) => value.subject.toLowerCase()
           .includes(searchQuery.toLowerCase())
           || value.title
             .includes(searchQuery)).map((filteredValue:any) => (
@@ -54,7 +54,8 @@ export default function Search() {
 
                 </TouchableOpacity>
               </Text>
-        ))}
+            ))}
+      </ScrollView>
     </View>
   );
 }

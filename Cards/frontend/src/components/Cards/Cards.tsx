@@ -30,7 +30,8 @@ export default function Cards({ navigation }:any) {
   useEffect(() => {
     const owned = packCards?.filter((value:any) => value?.user === userId);
     const subscripted = packCards
-      .filter(({ subscriptors }:any) => subscriptors?.includes(userId));
+    ?.filter((packCard:any) => packCard?.subscriptors?.includes(userId));
+
     setAllUserPackCards(owned.concat(subscripted));
   }, [packCards]);
 
