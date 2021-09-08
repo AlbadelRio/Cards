@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import {
-  View, Text
+  View, Text, ScrollView
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
@@ -27,36 +27,37 @@ export default function Discover() {
     <View
       style={{ flex: 2 }}
     >
-      <View
-        style={{ flex: 1 }}
-      >
-        <Text
-          style={styles.title}
+      <ScrollView>
+        <View
+          style={{ flex: 1 }}
         >
-          DISCOVER
-
-        </Text>
-        <Text
-          style={styles.subtitle}
-        >
-          Choose from these categories what interets you the most
-
-        </Text>
-      </View>
-      <View
-        style={styles.containerList}
-      >
-        {filteredPackCard.map((element:any) => (
           <Text
-            key={element._id}
-            style={styles.subjects}
-
+            style={styles.title}
           >
-            {element.subject}
-          </Text>
-        ))}
+            DISCOVER
 
-      </View>
+          </Text>
+          <Text
+            style={styles.subtitle}
+          >
+            Choose from these categories what interets you the most
+
+          </Text>
+        </View>
+        <View
+          style={styles.containerList}
+        >
+          {filteredPackCard.map((element:any) => (
+            <Text
+              key={element._id}
+              style={styles.subjects}
+            >
+              {element.subject}
+            </Text>
+          ))}
+
+        </View>
+      </ScrollView>
     </View>
   );
 }

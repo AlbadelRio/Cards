@@ -16,7 +16,7 @@ export function loadPackcards(token:any, refreshtoken:any) {
     return userRefreshToken(refreshtoken);
   };
 }
-
+/*
 export function getRandomPackCardBySubject(subject:string) {
   return async (dispatch:any) => {
     const { data } = await axios.get(`http://192.168.0.103:5000/api/packCards?subject=${subject}`);
@@ -26,6 +26,7 @@ export function getRandomPackCardBySubject(subject:string) {
     });
   };
 }
+*/
 
 export function subscribeToPackCard(token:any, refreshtoken:any, userId:string, packCardId:string) {
   return async (dispatch:any) => {
@@ -35,6 +36,21 @@ export function subscribeToPackCard(token:any, refreshtoken:any, userId:string, 
       });
       return dispatch({
         type: actionTypes.ADD_SUBSCRIPTOR_PACKCARD
+      });
+    }
+    return userRefreshToken(refreshtoken);
+  };
+}
+export function createPackCard(token:any, refreshtoken:any, body:any) {
+  return async (dispatch:any) => {
+    if (token) {
+      const { data } = await axios.post('http://192.168.0.103:5000/api/packCards', body, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      console.log(data);
+      return dispatch({
+        type: actionTypes.CREATE_PACKCARD,
+        newPackard: data
       });
     }
     return userRefreshToken(refreshtoken);

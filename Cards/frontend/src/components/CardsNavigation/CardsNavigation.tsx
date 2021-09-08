@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Cards from '../Cards/Cards';
 import Carroussel from '../Carroussel/Carroussel';
-import CreationForm from '../CreationForm/CreationFrom';
+import CreationForm from '../CreationForm/CreationForm';
 import UpdateForm from '../UpdateForm/UpdateForm';
 
 const Stack = createNativeStackNavigator();

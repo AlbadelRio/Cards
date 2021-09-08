@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const User = require('../models/userModel');
-const { DataChanges } = require('../utils/utils');
+const { DataChanges } = require('../utils/userUtils');
 
 function handleError(error, status = 500) {
   this.status(status);
