@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import {
-  View, Text, Pressable, Image, StyleSheet, TouchableOpacityBase
+  View, Text, Pressable, Image, StyleSheet
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
@@ -24,12 +24,11 @@ export default function Cards() {
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, []);
+  }, [packCards]);
 
   const owned = packCards.filter((value:any) => value.user === userId);
   const subscripted = packCards
     .filter(({ subscriptors }:any) => subscriptors.includes(userId));
-
   const allUserPackCards = owned.concat(subscripted);
 
   return (
