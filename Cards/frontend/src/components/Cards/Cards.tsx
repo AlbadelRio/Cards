@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View, Text, Pressable, Image, StyleSheet
 } from 'react-native';
@@ -24,12 +24,15 @@ export default function Cards() {
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, [packCards]);
+  }, []);
 
-  const owned = packCards.filter((value:any) => value.user === userId);
-  const subscripted = packCards
-    .filter(({ subscriptors }:any) => subscriptors.includes(userId));
-  const allUserPackCards = owned.concat(subscripted);
+  const [allUserPackCards, setAllUserPackCards] = useState([]);
+  useEffect(() => {
+    const owned = packCards.filter((value:any) => value.user === userId);
+    const subscripted = packCards
+      .filter(({ subscriptors }:any) => subscriptors.includes(userId));
+    setAllUserPackCards(owned.concat(subscripted));
+  }, [packCards]);
 
   return (
     <View>
