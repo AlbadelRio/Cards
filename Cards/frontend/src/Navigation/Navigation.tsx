@@ -15,7 +15,6 @@ export default function Navigation() {
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
       >
-
         {
           !isValidPassword
             ? <Stack.Screen name="Profile" component={Profile} />

@@ -37,8 +37,10 @@ export function login(user:User) {
 export function userRefreshToken(refreshToken:string) {
   return async (dispatch:any) => {
     try {
+      console.log('aaaa');
       const { data } = await axios.post('http://192.168.0.103:5000/refreshToken', { refreshToken });
       console.log('data userRefreshToken');
+
       console.log(data);
       return dispatch({
         type: actionTypes.REFRESH_TOKEN,
