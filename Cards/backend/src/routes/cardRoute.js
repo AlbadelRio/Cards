@@ -6,13 +6,14 @@ const cardRouter = new Router();
 
 cardRouter
   .route('/')
-  .all(passport.authenticate('jwt', { session: false }))
-  .post(createCard);
+  .all(passport.authenticate('jwt', { session: false }));
 
 cardRouter
   .route('/:cardId')
   .all(passport.authenticate('jwt', { session: false }))
   .put(updateCardById)
   .delete(deleteCard);
-
+cardRouter
+  .route('/:packCardId')
+  .post(createCard);
 module.exports = cardRouter;

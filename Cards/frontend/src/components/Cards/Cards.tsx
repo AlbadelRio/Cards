@@ -28,10 +28,10 @@ export default function Cards({ navigation }:any) {
 
   const [allUserPackCards, setAllUserPackCards] = useState([]);
   useEffect(() => {
-    const owned = packCards?.filter((value:any) => value?.user === userId);
     const subscripted = packCards
     ?.filter((packCard:any) => packCard?.subscriptors?.includes(userId));
 
+    const owned = packCards?.filter((value:any) => value?.user === userId);
     setAllUserPackCards(owned.concat(subscripted));
   }, [packCards]);
 
@@ -53,7 +53,7 @@ export default function Cards({ navigation }:any) {
               {pack.subject}
               {pack.title}
               <Text>
-                {pack?.packards?.length || 0}
+                {pack?.packCards?.length}
                 {' '}
                 CARDS
               </Text>

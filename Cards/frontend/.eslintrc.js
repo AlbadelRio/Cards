@@ -48,6 +48,10 @@ module.exports = {
     'comma-dangle': [2, 'never'],
     'linebreak-style': 0,
     'global-require': 0,
-    'eslint linebreak-style': [0, 'error', 'windows']
+    'eslint linebreak-style': [0, 'error', 'windows'],
+    'react/jsx-no-bind': [1, {
+      allowFunctions: true,
+      allowArrowFunctions: true
+    }]
   }
 };
