@@ -15,7 +15,7 @@ export default function Search() {
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, []);
+  }, [packCards.length]);
 
   const onChangeSearch = (query:any) => setSearchQuery(query);
 
@@ -30,9 +30,9 @@ export default function Search() {
           value={searchQuery}
         />
 
-        {packCards?.filter((value:any) => value.subject.toLowerCase()
+        {packCards && packCards?.filter((value:any) => value?.subject.toLowerCase()
           .includes(searchQuery.toLowerCase())
-          || value.title
+          || value?.title
             .includes(searchQuery)).map((filteredValue:any) => (
               <Text key={filteredValue._id}>
                 <Text>

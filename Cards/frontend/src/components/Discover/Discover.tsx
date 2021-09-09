@@ -15,9 +15,9 @@ export default function Discover() {
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, []);
+  }, [packCards.length]);
 
-  const filteredPackCard = Array.from(new Set(packCards.map((packCard:any) => packCard.subject)))
+  const filteredPackCard = Array.from(new Set(packCards?.map((packCard:any) => packCard?.subject)))
     .map((subject) => ({
       subject
     }));

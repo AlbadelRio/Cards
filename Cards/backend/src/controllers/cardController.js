@@ -18,7 +18,7 @@ async function createCard({ params: { packCardId }, body }, res) {
     console.log('foundPackCard', foundPackCard);
     foundPackCard.save();
     res.json(createdCard);
-    console.log('me voy al catch')
+    console.log('me voy al catch');
   } catch (error) {
     handleError.call(res, error, 500);
   }

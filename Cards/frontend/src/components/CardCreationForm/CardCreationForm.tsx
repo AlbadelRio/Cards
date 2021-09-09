@@ -9,6 +9,7 @@ export default function CardCreationForm({ token, refreshToken, activePackCard }
   console.log('CardCreation', activePackCard);
   const [questionText, setQuestionText] = useState('');
   const [answerText, setAnswerText] = useState('');
+
   const dispatch = useDispatch();
   const body = {
     question: questionText,

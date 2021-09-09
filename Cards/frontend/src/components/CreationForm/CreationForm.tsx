@@ -15,8 +15,8 @@ export default function CreationForm({ route }:any) {
   const [cardForm, setCardForm] = useState(false);
   const actualizedPackCard = useSelector((store:any) => (store.currentPackCardReducer));
 
-  const activePackCard = actualizedPackCard._id;
-  console.log('hole', actualizedPackCard._id);
+  // const activePackCard = actualizedPackCard._id;
+  // console.log('hole', actualizedPackCard._id);
   const dispatch = useDispatch();
   const body = {
     title: packCardTitle,
@@ -64,7 +64,7 @@ export default function CreationForm({ route }:any) {
       <CardCreationForm
         token={token}
         refreshToken={refreshToken}
-        activePackCard={activePackCard}
+        activePackCard={actualizedPackCard._id}
       />
       )}
     </View>
