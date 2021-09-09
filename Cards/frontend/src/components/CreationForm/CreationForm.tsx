@@ -15,6 +15,7 @@ export default function CreationForm({ route }:any) {
   const [cardForm, setCardForm] = useState(false);
   const actualizedPackCard = useSelector((store:any) => (store.currentPackCardReducer));
 
+  const activePackCard = actualizedPackCard._id;
   console.log('hole', actualizedPackCard._id);
   const dispatch = useDispatch();
   const body = {
@@ -59,7 +60,13 @@ export default function CreationForm({ route }:any) {
         </Pressable>
       </View>
       )}
-      { cardForm && <CardCreationForm token={token} refreshToken={refreshToken} userId={userId} />}
+      { cardForm && (
+      <CardCreationForm
+        token={token}
+        refreshToken={refreshToken}
+        activePackCard={activePackCard}
+      />
+      )}
     </View>
   );
 }
