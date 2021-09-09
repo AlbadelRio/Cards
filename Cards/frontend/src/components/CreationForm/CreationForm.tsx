@@ -59,7 +59,7 @@ export default function CreationForm({ route }:any) {
         </Pressable>
       </View>
       )}
-      { cardForm && <CardCreationForm />}
+      { cardForm && <CardCreationForm token={token} refreshToken={refreshToken} userId={userId} />}
     </View>
   );
 }
