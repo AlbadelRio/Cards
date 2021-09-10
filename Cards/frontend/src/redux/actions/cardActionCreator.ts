@@ -21,9 +21,10 @@ export default function createCard(token:any, refreshtoken:any, activePackCard:s
 }
 
 export function updateCard(token:any, refreshtoken:any, activeCard:string, body:any) {
+  console.log('hola');
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.post(`http://192.168.0.103:5000/api/cards/${activeCard}`, body, {
+      const { data } = await axios.put(`http://192.168.0.103:5000/api/cards/${activeCard}`, body, {
         headers: { Authorization: `Bearer ${token}` }
       });
       dispatch({
