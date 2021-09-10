@@ -16,8 +16,8 @@ async function createPackCard({ body }, res) {
 
 async function deletePackCard({ params: { packCardId } }, res) {
   try {
-    await PackCard.findByIdAndDelete(packCardId);
-    res.json('The packCard has been deleted');
+    const deletedPackCard = await PackCard.findByIdAndDelete(packCardId);
+    res.json(deletedPackCard);
   } catch (error) {
     handleError.call(res, error);
   }
