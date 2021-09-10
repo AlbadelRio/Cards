@@ -55,3 +55,17 @@ export function createPackCard(token:any, refreshtoken:any, body:any) {
     return userRefreshToken(refreshtoken);
   };
 }
+export function findPackCard(token:any, refreshtoken:any, packCardId:string) {
+  return async (dispatch:any) => {
+    if (token) {
+      const { data } = await axios.post(`http://192.168.0.103:5000/api/packCards/${packCardId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      dispatch({
+        type: actionTypes.FIND_PACKCARD,
+        newPackard: data
+      });
+    }
+    return userRefreshToken(refreshtoken);
+  };
+}

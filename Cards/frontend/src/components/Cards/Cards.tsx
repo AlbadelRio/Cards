@@ -46,9 +46,15 @@ export default function Cards({ navigation }:any) {
         </Text>
         {allUserPackCards.map((pack:any) => (
           <Pressable
+            key={pack._id}
             style={styles.items}
+            onPress={() => {
+              navigation.navigate('UpdateForm', {
+                pack
+              });
+            }}
           >
-            <Text key={pack._id}>
+            <Text>
               {pack.image}
               {pack.subject}
               {pack.title}
