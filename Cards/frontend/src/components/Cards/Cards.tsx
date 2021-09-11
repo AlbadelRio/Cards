@@ -37,7 +37,7 @@ export default function Cards({ navigation }:any) {
     console.log('he entrado en el 2do useEffect');
     const subscripted = packCards
     ?.filter((packCard:any) => packCard?.subscriptors?.includes(userId));
-
+    console.log(subscripted);
     const owned = packCards?.filter((value:any) => value?.user === userId);
     setAllUserPackCards(owned.concat(subscripted));
   }, [packCards]);
@@ -91,7 +91,14 @@ export default function Cards({ navigation }:any) {
                 {' '}
                 CARDS
               </Text>
-              <Pressable>
+              <Pressable
+                onPress={() => {
+                  navigation.navigate('Carroussel', {
+                    userId,
+                    pack
+                  });
+                }}
+              >
                 <View>
                   <Image
                     style={styles.tinyLogo}
