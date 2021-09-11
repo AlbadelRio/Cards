@@ -91,7 +91,14 @@ export default function Cards({ navigation }:any) {
                 {' '}
                 CARDS
               </Text>
-              <Pressable>
+              <Pressable
+                onPress={() => {
+                  navigation.navigate('Carroussel', {
+                    userId,
+                    pack
+                  });
+                }}
+              >
                 <View>
                   <Image
                     style={styles.tinyLogo}
