@@ -31,8 +31,7 @@ async function updateCardById({ params: { cardId }, body }, res) {
       cardId,
       dataToUpdate,
       {
-        new: true,
-        useFindAndModify: false
+        new: true
       }
     );
     res.json(updatedCard);

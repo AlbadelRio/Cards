@@ -1,15 +1,21 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import {
   View, Text, Pressable, Image, StyleSheet, ScrollView
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
+import { deletePackCard, loadPackcards } from '../../redux/actions/packCardsActionCreators';
 
 const styles = StyleSheet.create({
   tinyLogo: {
     width: 30,
     height: 30
+  },
+  tinyDelete: {
+    width: 20,
+    height: 20
   },
   items: {
     width: 400,
@@ -21,13 +27,14 @@ export default function Cards({ navigation }:any) {
   const userId = useSelector((store:any) => store.auth.user.user._id);
   const packCards = useSelector((store:any) => store.packardsReducer);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadPackcards(token, refreshToken));
-  }, []);
-
   const [allUserPackCards, setAllUserPackCards] = useState([]);
   useEffect(() => {
+    console.log('he entrado en el useEffect');
+    dispatch(loadPackcards(token, refreshToken));
+  }, [packCards.length, packCards.packCards]);
+
+  useEffect(() => {
+    console.log('he entrado en el 2do useEffect');
     const subscripted = packCards
     ?.filter((packCard:any) => packCard?.subscriptors?.includes(userId));
 
@@ -35,6 +42,15 @@ export default function Cards({ navigation }:any) {
     setAllUserPackCards(owned.concat(subscripted));
   }, [packCards]);
 
+  function deleteHandler(pack:any) {
+    dispatch(deletePackCard(
+      token,
+      refreshToken,
+      pack._id
+
+    ));
+  }
+  console.log(allUserPackCards.length);
   return (
     <View>
       <ScrollView>
@@ -46,9 +62,27 @@ export default function Cards({ navigation }:any) {
         </Text>
         {allUserPackCards.map((pack:any) => (
           <Pressable
+            key={pack._id}
             style={styles.items}
+            onPress={() => {
+              navigation.navigate('UpdateForm', {
+                pack
+              });
+            }}
           >
-            <Text key={pack._id}>
+            <Pressable
+              onPress={() => { deleteHandler(pack); }}
+            >
+              <View>
+                <Image
+                  style={styles.tinyDelete}
+                  source={{
+                    uri: 'https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png'
+                  }}
+                />
+              </View>
+            </Pressable>
+            <Text>
               {pack.image}
               {pack.subject}
               {pack.title}

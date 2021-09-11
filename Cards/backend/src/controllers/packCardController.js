@@ -16,8 +16,8 @@ async function createPackCard({ body }, res) {
 
 async function deletePackCard({ params: { packCardId } }, res) {
   try {
-    await PackCard.findByIdAndDelete(packCardId);
-    res.json('The packCard has been deleted');
+    const deletedPackCard = await PackCard.findByIdAndDelete(packCardId);
+    res.json(deletedPackCard);
   } catch (error) {
     handleError.call(res, error);
   }
@@ -33,7 +33,10 @@ async function findRandomBySubject({ query: { subject } }, res) {
 }
 async function findAllPackCards({ query }, res) {
   try {
-    const allPackCards = await PackCard.find(query);
+    const allPackCards = await PackCard.find(query).populate({
+      path: 'packCards',
+      select: ['question', 'answer']
+    });
     res.json(allPackCards);
   } catch (error) {
     handleError.call(res, error);

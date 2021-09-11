@@ -6,6 +6,10 @@ export default function CardReducer(card = {}, action:any) {
     case actionTypes.CREATE_CARD:
       newCard = action.newCard;
       break;
+    case actionTypes.UPDATE_CARD:
+      newCard = action.newCard;
+      break;
+
     default:
       break;
   }
