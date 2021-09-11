@@ -31,7 +31,7 @@ export default function Cards({ navigation }:any) {
   useEffect(() => {
     console.log('he entrado en el useEffect');
     dispatch(loadPackcards(token, refreshToken));
-  }, [packCards.length]);
+  }, [packCards.length, packCards.packCards]);
 
   useEffect(() => {
     console.log('he entrado en el 2do useEffect');
@@ -40,7 +40,7 @@ export default function Cards({ navigation }:any) {
 
     const owned = packCards?.filter((value:any) => value?.user === userId);
     setAllUserPackCards(owned.concat(subscripted));
-  }, [packCards, packCards.packCards]);
+  }, [packCards]);
 
   function deleteHandler(pack:any) {
     dispatch(deletePackCard(

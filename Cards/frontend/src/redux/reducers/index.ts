@@ -5,6 +5,7 @@ import tokensReducer from './tokensReducer';
 import subscribeToPackCardReducer from './subscribeReducer';
 import currentPackCardReducer from './activePackCard';
 import findPackCardReducer from './findPackCardReducer';
+import cardsReducer from './cardsReducers';
 
 export default combineReducers({
   auth,
@@ -12,6 +13,7 @@ export default combineReducers({
   tokensReducer,
   subscribeToPackCardReducer,
   currentPackCardReducer,
-  findPackCardReducer
+  findPackCardReducer,
+  cardsReducer
 
 });
