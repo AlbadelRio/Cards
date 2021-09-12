@@ -16,7 +16,7 @@ export default function Cards({ navigation }:any) {
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, [packCards.length]);
+  }, [packCards.length, packCards.packCards]);
 
   useEffect(() => {
     /* const subscripted = packCards
@@ -24,7 +24,7 @@ export default function Cards({ navigation }:any) {
 
     const owned = packCards?.filter((value:any) => value?.user === userId);
     setAllUserPackCards(owned);
-  }, [packCards.length]);
+  }, [packCards]);
 
   function deleteHandler(pack:any) {
     dispatch(deletePackCard(
