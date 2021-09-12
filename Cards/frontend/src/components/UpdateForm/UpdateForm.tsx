@@ -14,12 +14,10 @@ export default function UpdateForm({ route: { params: { pack } } }:any) {
         UpdateForm
 
       </Text>
-      <View style={styles.backgroundCover}>
-        <ScrollView>
-          {pack?.packCards.map((card:any) => (
-            <Card card={card} />))}
-        </ScrollView>
-      </View>
+      <ScrollView>
+        {pack?.packCards.map((card:any) => (
+          <Card card={card} />))}
+      </ScrollView>
     </View>
   );
 }

@@ -3,14 +3,10 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   background: {
     backgroundColor: '#272727',
-    width: '100%'
-  },
-  backgroundCover: {
-    backgroundColor: '#5EBBB0',
-    width: '70%',
+    width: '100%',
     height: '100%',
-    marginTop: 70,
-    marginLeft: 40
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   title: {
     fontSize: 25,
