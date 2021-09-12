@@ -1,45 +1,29 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, Pressable, Image, StyleSheet, ScrollView
+  View, Text, Pressable, Image, ScrollView
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import styles from './cardStyles';
 import { deletePackCard, loadPackcards } from '../../redux/actions/packCardsActionCreators';
 
-const styles = StyleSheet.create({
-  tinyLogo: {
-    width: 30,
-    height: 30
-  },
-  tinyDelete: {
-    width: 20,
-    height: 20
-  },
-  items: {
-    width: 400,
-    height: 100
-  }
-});
 export default function Cards({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
   const userId = useSelector((store:any) => store.auth.user.user._id);
   const packCards = useSelector((store:any) => store.packardsReducer);
   const dispatch = useDispatch();
   const [allUserPackCards, setAllUserPackCards] = useState([]);
+
   useEffect(() => {
-    console.log('he entrado en el useEffect');
     dispatch(loadPackcards(token, refreshToken));
   }, [packCards.length, packCards.packCards]);
 
   useEffect(() => {
-    console.log('he entrado en el 2do useEffect');
-    const subscripted = packCards
-    ?.filter((packCard:any) => packCard?.subscriptors?.includes(userId));
-    console.log(subscripted);
+    /* const subscripted = packCards
+    ?.subscriptors?.map((element:any) => element.userId === userId); */
+
     const owned = packCards?.filter((value:any) => value?.user === userId);
-    setAllUserPackCards(owned.concat(subscripted));
+    setAllUserPackCards(owned);
   }, [packCards]);
 
   function deleteHandler(pack:any) {
@@ -50,80 +34,90 @@ export default function Cards({ navigation }:any) {
 
     ));
   }
-  console.log(allUserPackCards.length);
   return (
-    <View>
-      <ScrollView>
-        <Text>My CARDS</Text>
-        <Text>
-          {allUserPackCards.length}
-          {' '}
-          PACKCARDS
-        </Text>
-        {allUserPackCards.map((pack:any) => (
-          <Pressable
-            key={pack._id}
-            style={styles.items}
-            onPress={() => {
-              navigation.navigate('UpdateForm', {
-                pack
-              });
-            }}
-          >
-            <Pressable
-              onPress={() => { deleteHandler(pack); }}
-            >
-              <View>
-                <Image
-                  style={styles.tinyDelete}
-                  source={{
-                    uri: 'https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png'
-                  }}
-                />
-              </View>
-            </Pressable>
+    <View style={styles.background}>
+      <View style={styles.scrollBackground}>
+        <Text style={styles.h1}>MY CARDS</Text>
+        <View>
+          <ScrollView>
             <Text>
-              {pack.image}
-              {pack.subject}
-              {pack.title}
-              <Text>
-                {pack?.packCards?.length}
-                {' '}
-                CARDS
-              </Text>
+              {allUserPackCards.length}
+              {' '}
+              PACKCARDS
+            </Text>
+            {allUserPackCards.map((pack:any) => (
               <Pressable
+                key={pack._id}
+                style={styles.items}
                 onPress={() => {
-                  navigation.navigate('Carroussel', {
-                    userId,
+                  navigation.navigate('UpdateForm', {
                     pack
                   });
                 }}
               >
-                <View>
-                  <Image
-                    style={styles.tinyLogo}
-                    source={{
-                      uri: 'https://img.icons8.com/material-rounded/96/000000/play--v1.png'
-                    }}
-                  />
+                <Pressable
+                  onPress={() => { deleteHandler(pack); }}
+                >
+                  <View
+                    style={styles.delete}
+                  >
+                    <Image
+                      style={styles.tinyDelete}
+                      source={{
+                        uri: 'https://img.icons8.com/plumpy/24/000000/waste.png'
+                      }}
+                    />
+                  </View>
+                </Pressable>
+                <View style={styles.cards}>
+                  <View style={styles.info}>
+                    <Text style={styles.text}>{pack.title}</Text>
+                    <Text>{pack.subject}</Text>
+                  </View>
+                  <View>
+                    <Text>
+                      {pack?.packCards?.length}
+                      {' '}
+                      CARDS
+                    </Text>
+                  </View>
                 </View>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('Carroussel', {
+                      userId,
+                      pack
+                    });
+                  }}
+                >
+                  <View>
+                    <Image
+                      style={styles.tinyLogo}
+                      source={{
+                        uri: 'https://img.icons8.com/material-rounded/96/000000/play--v1.png'
+                      }}
+                    />
+                  </View>
+                </Pressable>
               </Pressable>
-            </Text>
-          </Pressable>
-        ))}
-        <Pressable
-          onPress={() => {
-            navigation.navigate('CreationForm', {
-              userId,
-              token,
-              refreshToken
-            });
-          }}
-        >
-          <Text>ADD</Text>
+            ))}
+            <View style={styles.button}>
+              <Pressable
+                onPress={() => {
+                  navigation.navigate('CreationForm', {
+                    userId,
+                    token,
+                    refreshToken
+                  });
+                }}
+              >
+                <Text style={styles.add}>ADD</Text>
 
-        </Pressable>
-      </ScrollView>
+              </Pressable>
+            </View>
+          </ScrollView>
+        </View>
+      </View>
     </View>
   );
 }

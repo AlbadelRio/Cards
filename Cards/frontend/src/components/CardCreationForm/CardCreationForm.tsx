@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text, View, TextInput, TouchableOpacity
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import createCard from '../../redux/actions/cardActionCreator';
+import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
 
 export default function CardCreationForm({ token, refreshToken, activePackCard }:any) {
-  console.log('CardCreation', activePackCard);
+  const cards = useSelector((store:any) => store.cardsReducer);
   const [questionText, setQuestionText] = useState('');
   const [answerText, setAnswerText] = useState('');
 
@@ -16,6 +17,7 @@ export default function CardCreationForm({ token, refreshToken, activePackCard }
     answer: answerText
   };
   function newCardHandler() {
+    console.log('entra en newCardHandler');
     if (questionText && answerText) {
       dispatch(createCard(
         token,
@@ -25,6 +27,10 @@ export default function CardCreationForm({ token, refreshToken, activePackCard }
       ));
     }
   }
+  useEffect(() => {
+    dispatch(loadPackcards(token,
+      refreshToken));
+  }, [cards]);
 
   return (
     <View>
