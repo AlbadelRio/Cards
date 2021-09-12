@@ -4,8 +4,9 @@ import {
   View, Text, Pressable, Image, ScrollView
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './cardStyles';
+
 import { deletePackCard, loadPackcards } from '../../redux/actions/packCardsActionCreators';
+import styles from './cardStyles';
 
 export default function Cards({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
