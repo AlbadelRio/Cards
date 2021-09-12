@@ -6,6 +6,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createPackCard } from '../../redux/actions/packCardsActionCreators';
+
 import CardCreationForm from '../CardCreationForm/CardCreationForm';
 
 export default function CreationForm({ route }:any) {
@@ -15,8 +16,6 @@ export default function CreationForm({ route }:any) {
   const [cardForm, setCardForm] = useState(false);
   const actualizedPackCard = useSelector((store:any) => (store.currentPackCardReducer));
 
-  // const activePackCard = actualizedPackCard._id;
-  // console.log('hole', actualizedPackCard._id);
   const dispatch = useDispatch();
   const body = {
     title: packCardTitle,
