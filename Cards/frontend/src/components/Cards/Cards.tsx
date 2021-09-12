@@ -24,7 +24,7 @@ export default function Cards({ navigation }:any) {
 
     const owned = packCards?.filter((value:any) => value?.user === userId);
     setAllUserPackCards(owned);
-  }, [packCards]);
+  }, [packCards, packCards.packCards]);
 
   function deleteHandler(pack:any) {
     dispatch(deletePackCard(
