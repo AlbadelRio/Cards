@@ -11,7 +11,7 @@ export default function UpdateForm({ route: { params: { pack } } }:any) {
       <Text
         style={styles.title}
       >
-        UpdateForm
+        Update Cards
 
       </Text>
       <ScrollView>

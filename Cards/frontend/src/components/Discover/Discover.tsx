@@ -27,23 +27,25 @@ export default function Discover() {
     <View
       style={{ flex: 2 }}
     >
-      <ScrollView>
-        <View
-          style={{ flex: 1 }}
+      <View
+        style={{ flex: 1 }}
+      >
+        <Text
+          style={styles.title}
         >
-          <Text
-            style={styles.title}
-          >
-            DISCOVER
+          DISCOVER
 
-          </Text>
-          <Text
-            style={styles.subtitle}
-          >
-            Choose from these categories what interets you the most
+        </Text>
+        <Text
+          style={styles.subtitle}
+        >
+          Choose from these categories what interets you the most
 
-          </Text>
-        </View>
+        </Text>
+      </View>
+      <ScrollView
+        horizontal
+      >
         <View
           style={styles.containerList}
         >
@@ -55,7 +57,6 @@ export default function Discover() {
               {element.subject}
             </Text>
           ))}
-
         </View>
       </ScrollView>
     </View>

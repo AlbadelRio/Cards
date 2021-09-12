@@ -33,7 +33,7 @@ export default StyleSheet.create({
     height: 45,
     backgroundColor: '#5EBBB0',
     borderRadius: 3,
-    marginRight: 15,
+    marginRight: 10,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 7
@@ -50,17 +50,17 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'column',
-    marginRight: 25,
+    marginRight: 15,
     color: '#272727'
   },
   cards: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 15
+    marginRight: 10
   },
   text: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 15,
     color: '#272727'
   },
   add: {

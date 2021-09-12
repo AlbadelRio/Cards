@@ -13,27 +13,29 @@ export default StyleSheet.create({
     color: '#222222',
     textAlign: 'center',
     marginTop: 20
+
   },
   containerList: {
 
-    width: '100%',
+    width: 600,
     height: 300,
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    marginTop: 50
 
   },
   subjects: {
-    marginTop: 8,
+    margin: 8,
     padding: 10,
     width: 110,
     height: 40,
     backgroundColor: '#222222',
     color: '#c5c5c5',
     fontWeight: 'bold',
-    textAlign: 'center'
-
+    textAlign: 'center',
+    elevation: 8
   },
   bar: {
     width: '100%',
