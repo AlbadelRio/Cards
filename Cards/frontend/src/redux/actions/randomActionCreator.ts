@@ -9,9 +9,10 @@ export default function getRandomPackCardBySubject(token:any, refreshtoken:any, 
       const { data } = await axios.get(ENV_VAR.concat(`/api/packCards?subject=${subject}`), {
         headers: { Authorization: `Bearer ${token}` }
       });
+      console.log('data', data);
       return dispatch({
         type: actionTypes.GETRANDOM_PACKCARD,
-        randomPackCard: data
+        random: data
       });
     }
     return userRefreshToken(refreshtoken);

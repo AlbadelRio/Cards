@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   FlatList,
   StatusBar,
@@ -13,10 +14,10 @@ const { width } = Dimensions.get('screen');
 
 export default function Carroussel({ route: { params } }:any) {
   const { pack } = params;
-  // const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
+  const random = useSelector((store:any) => store?.randomPackCardReducer);
+
   const cardW = width * 0.7;
   const cardH = cardW * 1.54;
-  const totalNumberOfQuestions = pack.packCards.length;
   const [showAnswer, setShowAnswer] = useState(false);
   function flipHandler() {
     if (showAnswer) {
@@ -25,11 +26,13 @@ export default function Carroussel({ route: { params } }:any) {
       setShowAnswer(true);
     }
   }
+
   return (
+
     <View style={{ flex: 1, backgroundColor: '#5EBBB0' }}>
       <StatusBar hidden />
       <FlatList
-        data={pack.packCards}
+        data={pack?.packCards}
         horizontal
         pagingEnabled
         renderItem={({ item, index }) => (
@@ -56,16 +59,14 @@ export default function Carroussel({ route: { params } }:any) {
                 <Text style={{ color: 'white' }}>Question</Text>
                 <Text style={{ color: 'white' }}>
                   {index + 1}
-                  /
-                  {totalNumberOfQuestions}
                 </Text>
-                <Text style={{ color: 'white' }}>{item.question}</Text>
+                <Text style={{ color: 'white' }}>{item?.question}</Text>
               </>
               )}
               {showAnswer && (
               <>
                 <Text style={{ color: 'white' }}>Answer</Text>
-                <Text style={{ color: 'white' }}>{item.answer}</Text>
+                <Text style={{ color: 'white' }}>{item?.answer}</Text>
               </>
               )}
               <Text style={{ color: 'white' }}>Tap to Flip</Text>

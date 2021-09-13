@@ -67,7 +67,6 @@ export function deletePackCard(token:any, refreshtoken:any, packCardId:string) {
       const { data } = await axios.delete(ENV_VAR.concat(`/api/packCards/${packCardId}`), {
         headers: { Authorization: `Bearer ${token}` }
       });
-      console.log('deleteDataAction', data);
       dispatch({
         type: actionTypes.DELETE_PACKCARD,
         packCards: data

@@ -6,6 +6,7 @@ import subscribeToPackCardReducer from './subscribeReducer';
 import currentPackCardReducer from './activePackCard';
 import findPackCardReducer from './findPackCardReducer';
 import cardsReducer from './cardsReducers';
+import randomPackCardReducer from './randomReducer';
 
 export default combineReducers({
   auth,
@@ -14,6 +15,7 @@ export default combineReducers({
   subscribeToPackCardReducer,
   currentPackCardReducer,
   findPackCardReducer,
-  cardsReducer
+  cardsReducer,
+  randomPackCardReducer
 
 });

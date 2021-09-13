@@ -1,26 +1,49 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react';
 import {
-  View, Text, ScrollView
+  View, Text, ScrollView, Pressable
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
+import getRandomPackCardBySubject from '../../redux/actions/randomActionCreator';
 import styles from './discoverStlyles';
 
-export default function Discover() {
+export default function Discover({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
   const packCards = useSelector((store:any) => store.packardsReducer);
-
+  const randomPack = useSelector((store:any) => store?.randomPackCardReducer);
+  const storetotal = useSelector((store) => store);
+  console.log(storetotal);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, [packCards.length]);
+  }, []);
 
   const filteredPackCard = Array.from(new Set(packCards?.map((packCard:any) => packCard?.subject)))
     .map((subject) => ({
       subject
     }));
+
+  console.log('random', randomPack);
+
+  function redirection(pack:any) {
+    navigation.navigate('Carroussel', {
+      pack
+    });
+  }
+  function randomHandler(element:any) {
+    dispatch(getRandomPackCardBySubject(
+      token,
+      refreshToken,
+      element.subject
+    ));
+    console.log('jugadas locas');
+    console.log('randomPack', randomPack);
+  }
+  useEffect(() => {
+    redirection(randomPack);
+  }, [randomPack]);
 
   return (
 
@@ -50,12 +73,20 @@ export default function Discover() {
           style={styles.containerList}
         >
           {filteredPackCard.map((element:any) => (
-            <Text
-              key={element._id}
-              style={styles.subjects}
-            >
-              {element.subject}
-            </Text>
+            <>
+              <Pressable
+                style={styles.subjects}
+                onPress={() => {
+                  randomHandler(element);
+                }}
+              >
+                <Text
+                  key={element._id}
+                >
+                  {element.subject}
+                </Text>
+              </Pressable>
+            </>
           ))}
         </View>
       </ScrollView>
