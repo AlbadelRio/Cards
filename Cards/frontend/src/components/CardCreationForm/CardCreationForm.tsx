@@ -17,7 +17,6 @@ export default function CardCreationForm({ token, refreshToken, activePackCard }
     answer: answerText
   };
   function newCardHandler() {
-    console.log('entra en newCardHandler');
     if (questionText && answerText) {
       dispatch(createCard(
         token,
