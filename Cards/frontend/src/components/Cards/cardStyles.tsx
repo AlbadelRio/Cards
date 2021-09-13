@@ -33,30 +33,30 @@ export default StyleSheet.create({
     height: 45,
     backgroundColor: '#5EBBB0',
     borderRadius: 3,
-    marginRight: 10,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 7
   },
   items: {
-    width: 400,
+    width: 300,
     height: 100,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
+
   },
   info: {
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'column',
-    marginRight: 10,
     color: '#272727'
   },
   cards: {
+    width: 200,
+    justifyContent: 'space-between',
     flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 8
+    alignItems: 'center'
   },
   text: {
     fontWeight: 'bold',
