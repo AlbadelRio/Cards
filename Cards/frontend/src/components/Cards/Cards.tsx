@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {
   View, Text, Pressable, Image, ScrollView
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { deletePackCard, loadPackcards } from '../../redux/actions/packCardsActionCreators';
@@ -31,7 +32,6 @@ export default function Cards({ navigation }:any) {
     const owned = packCards?.filter((value:any) => value?.user === userId);
     setAllUserPackCards(owned);
   }, [packCards]);
-
 
   function deleteHandler(pack:any) {
     dispatch(deletePackCard(
@@ -62,20 +62,27 @@ export default function Cards({ navigation }:any) {
                   });
                 }}
               >
-                <Pressable
-                  onPress={() => { deleteHandler(pack); }}
+                <LinearGradient
+                  start={{ x: 1, y: 0 }}
+                  end={{ x: 0, y: 1 }}
+                  colors={['#5EBBB0', '#5D5FEF']}
+                  style={styles.linearGradient}
                 >
-                  <View
-                    style={styles.delete}
+                  <Pressable
+                    onPress={() => { deleteHandler(pack); }}
                   >
-                    <Image
-                      style={styles.tinyDelete}
-                      source={{
-                        uri: 'https://img.icons8.com/plumpy/24/000000/waste.png'
-                      }}
-                    />
-                  </View>
-                </Pressable>
+                    <View
+                      style={styles.delete}
+                    >
+                      <Image
+                        style={styles.tinyDelete}
+                        source={{
+                          uri: 'https://img.icons8.com/plumpy/24/000000/waste.png'
+                        }}
+                      />
+                    </View>
+                  </Pressable>
+                </LinearGradient>
                 <View style={styles.cards}>
                   <View style={styles.info}>
                     <Text style={styles.text}>{pack.title}</Text>
@@ -108,19 +115,27 @@ export default function Cards({ navigation }:any) {
                 </Pressable>
               </Pressable>
             ))}
-            <View style={styles.button}>
-              <Pressable
-                onPress={() => {
-                  navigation.navigate('CreationForm', {
-                    userId,
-                    token,
-                    refreshToken
-                  });
-                }}
-              >
-                <Text style={styles.add}>ADD</Text>
 
-              </Pressable>
+            <View style={styles.button}>
+              <LinearGradient
+                start={{ x: 1, y: 0 }}
+                end={{ x: 0, y: 1 }}
+                colors={['#5EBBB0', '#5D5FEF']}
+                style={styles.linearGradientButton}
+              >
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('CreationForm', {
+                      userId,
+                      token,
+                      refreshToken
+                    });
+                  }}
+                >
+                  <Text style={styles.add}>ADD</Text>
+
+                </Pressable>
+              </LinearGradient>
             </View>
           </ScrollView>
         </View>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-
+import LinearGradient from 'react-native-linear-gradient';
 import {
   FlatList,
   StatusBar,
@@ -24,39 +24,45 @@ export default function Carroussel({ route: { params } }:any) {
   }
 
   return (
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      colors={['#5EBBB0', '#5D5FEF']}
+      style={styles.linearGradient}
+    >
+      <View style={{ flex: 1 }}>
+        <StatusBar hidden />
+        <FlatList
+          data={pack?.packCards}
+          horizontal
+          pagingEnabled
+          renderItem={({ item, index }) => (
+            <Pressable
+              style={styles.card}
+              key={index.toString()}
+              onPress={flipHandler}
+            >
+              <View style={styles.inside}>
+                { !showAnswer && (
+                <>
+                  <Text style={styles.text}>Question</Text>
+                  <Text style={styles.text}>{item?.question}</Text>
+                </>
+                )}
+                {showAnswer && (
+                <>
+                  <Text style={styles.text}>Answer</Text>
+                  <Text style={styles.text}>{item?.answer}</Text>
+                </>
+                )}
+                <Text style={styles.text}>Tap to Flip</Text>
+              </View>
 
-    <View style={{ flex: 1, backgroundColor: '#5EBBB0' }}>
-      <StatusBar hidden />
-      <FlatList
-        data={pack?.packCards}
-        horizontal
-        pagingEnabled
-        renderItem={({ item, index }) => (
-          <Pressable
-            style={styles.card}
-            key={index.toString()}
-            onPress={flipHandler}
-          >
-            <View style={styles.inside}>
-              { !showAnswer && (
-              <>
-                <Text style={styles.text}>Question</Text>
-                <Text style={styles.text}>{item?.question}</Text>
-              </>
-              )}
-              {showAnswer && (
-              <>
-                <Text style={styles.text}>Answer</Text>
-                <Text style={styles.text}>{item?.answer}</Text>
-              </>
-              )}
-              <Text style={styles.text}>Tap to Flip</Text>
-            </View>
+            </Pressable>
 
-          </Pressable>
-
-        )}
-      />
-    </View>
+          )}
+        />
+      </View>
+    </LinearGradient>
   );
 }

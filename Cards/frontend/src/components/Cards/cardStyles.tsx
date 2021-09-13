@@ -28,10 +28,9 @@ export default StyleSheet.create({
     width: 15,
     height: 15
   },
-  delete: {
+  linearGradient: {
     width: 45,
     height: 45,
-    backgroundColor: '#5EBBB0',
     borderRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
@@ -63,19 +62,19 @@ export default StyleSheet.create({
     fontSize: 15,
     color: '#272727'
   },
-  add: {
-    width: 80,
-    height: 40,
-    backgroundColor: '#5EBBB0',
-    borderRadius: 3,
+  linearGradientButton: {
+    width: 90,
+    height: 50,
+    borderRadius: 4,
     elevation: 7,
+    marginTop: 20
+  },
+  add: {
     fontWeight: 'bold',
     fontSize: 18,
     textAlign: 'center',
-    padding: 8,
-    color: '#272727',
-    marginTop: 20
-
+    padding: 12,
+    color: '#272727'
   },
   button: {
     flex: 1,

@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  component: {
+  linearGradient: {
     height: '100%',
-    backgroundColor: '#222222'
+    width: '100%'
   },
   title: {
     fontSize: 60,

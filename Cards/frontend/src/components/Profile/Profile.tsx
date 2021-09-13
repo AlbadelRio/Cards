@@ -3,7 +3,7 @@ import {
   View, TextInput, TouchableOpacity, Text, Pressable
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-
+import LinearGradient from 'react-native-linear-gradient';
 import { login } from '../../redux/actions/authActionCreators';
 
 import styles from './profileStyles';
@@ -23,9 +23,13 @@ export default function Profile({ navigation }:any) {
   const [emailText, setEmail] = useState('');
   const [passwordText, setPassword] = useState('');
   return (
-    <View
-      style={styles.component}
+    <LinearGradient
+      start={{ x: 0, y: 1 }}
+      end={{ x: 0, y: 0 }}
+      colors={['#222222', '#EAECF2']}
+      style={styles.linearGradient}
     >
+
       <View>
         <Text
           style={styles.title}
@@ -71,6 +75,6 @@ export default function Profile({ navigation }:any) {
 
         </Text>
       </Pressable>
-    </View>
+    </LinearGradient>
   );
 }

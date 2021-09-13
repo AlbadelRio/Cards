@@ -4,6 +4,10 @@ const { width } = Dimensions.get('screen');
 const cardW = width * 0.7;
 const cardH = cardW * 1.54;
 export default StyleSheet.create({
+  linearGradient: {
+    width: '100%',
+    height: '100%'
+  },
   card: {
     width,
     justifyContent: 'center',
