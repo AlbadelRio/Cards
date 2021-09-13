@@ -9,16 +9,10 @@ function handleError(error, status = 404) {
 
 async function createCard({ params: { packCardId }, body }, res) {
   try {
-    console.log('hola');
     const createdCard = await Card.create(body);
-    console.log(createCard);
     const foundPackCard = await PackCard.findById(packCardId);
-    console.log(foundPackCard);
     foundPackCard.packCards.push(createdCard._id);
-    console.log('foundPackCard', foundPackCard);
     foundPackCard.save();
-    res.json(createdCard);
-    console.log('me voy al catch');
   } catch (error) {
     handleError.call(res, error, 500);
   }
