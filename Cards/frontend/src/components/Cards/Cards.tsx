@@ -32,6 +32,7 @@ export default function Cards({ navigation }:any) {
     setAllUserPackCards(owned.concat(subscripted));
   }, [packCards]);
 
+
   function deleteHandler(pack:any) {
     dispatch(deletePackCard(
       token,
