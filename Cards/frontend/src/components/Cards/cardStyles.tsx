@@ -44,19 +44,19 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'space-between'
   },
   info: {
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'column',
-    marginRight: 15,
+    marginRight: 10,
     color: '#272727'
   },
   cards: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 10
+    marginRight: 8
   },
   text: {
     fontWeight: 'bold',

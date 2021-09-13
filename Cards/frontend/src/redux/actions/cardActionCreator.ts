@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ENV_VAR } from '@env';
 import { userRefreshToken } from './authActionCreators';
 import actionTypes from './actionTypes';
 
@@ -6,7 +7,7 @@ export default function createCard(token:any, refreshtoken:any, activePackCard:s
   console.log('action', activePackCard);
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.post(`:5000/api/cards/${activePackCard}`, body, {
+      const { data } = await axios.post(ENV_VAR.concat(`/api/cards/${activePackCard}`), body, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log(data);
@@ -24,7 +25,7 @@ export function updateCard(token:any, refreshtoken:any, activeCard:string, body:
   console.log('hola');
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.put(`:5000/api/cards/${activeCard}`, body, {
+      const { data } = await axios.put(ENV_VAR.concat(`/api/cards/${activeCard}`), body, {
         headers: { Authorization: `Bearer ${token}` }
       });
       dispatch({

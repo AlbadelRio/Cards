@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { ENV_VAR } from '@env';
 import { userRefreshToken } from './authActionCreators';
 import actionTypes from './actionTypes';
 
 export function loadPackcards(token:any, refreshtoken:any) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.get(':5000/api/packCards', {
+      const { data } = await axios.get(ENV_VAR.concat('/api/packCards'), {
         headers: { Authorization: `Bearer ${token}` }
       });
       return dispatch({
@@ -31,7 +32,7 @@ export function getRandomPackCardBySubject(subject:string) {
 export function subscribeToPackCard(token:any, refreshtoken:any, userId:string, packCardId:string) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.put(`:5000/api/packCards/${packCardId}`, { userId }, {
+      const { data } = await axios.put(ENV_VAR.concat(`/api/packCards/${packCardId}`), { userId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       return dispatch({
@@ -45,7 +46,7 @@ export function subscribeToPackCard(token:any, refreshtoken:any, userId:string, 
 export function createPackCard(token:any, refreshtoken:any, body:any) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.post(':5000/api/packCards', body, {
+      const { data } = await axios.post(ENV_VAR.concat('/api/packCards'), body, {
         headers: { Authorization: `Bearer ${token}` }
       });
       dispatch({
@@ -59,7 +60,7 @@ export function createPackCard(token:any, refreshtoken:any, body:any) {
 export function findPackCard(token:any, refreshtoken:any, packCardId:string) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.post(`:5000/api/packCards/${packCardId}`, {
+      const { data } = await axios.post(ENV_VAR.concat(`/api/packCards/${packCardId}`), {
         headers: { Authorization: `Bearer ${token}` }
       });
       dispatch({
@@ -74,7 +75,7 @@ export function findPackCard(token:any, refreshtoken:any, packCardId:string) {
 export function deletePackCard(token:any, refreshtoken:any, packCardId:string) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.delete(`:5000/api/packCards/${packCardId}`, {
+      const { data } = await axios.delete(ENV_VAR.concat(`/api/packCards/${packCardId}`), {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('deleteDataAction', data);

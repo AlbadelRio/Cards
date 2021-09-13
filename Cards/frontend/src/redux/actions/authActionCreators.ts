@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { ENV_VAR } from '@env';
 import actionTypes from './actionTypes';
 
 type User= {
@@ -12,7 +12,8 @@ export function login(user:User) {
   return async (dispatch:any) => {
     console.log(dispatch);
     try {
-      const { data } = await axios.post(':5000/login', user);
+      console.log(ENV_VAR.concat('/login'));
+      const { data } = await axios.post(ENV_VAR.concat('/login'), user);
       console.log('login:');
       console.log(data);
       return dispatch({
@@ -38,7 +39,7 @@ export function userRefreshToken(refreshToken:string) {
   return async (dispatch:any) => {
     try {
       console.log('aaaa');
-      const { data } = await axios.post(':5000/refreshToken', { refreshToken });
+      const { data } = await axios.post(ENV_VAR.concat('/refreshToken'), { refreshToken });
       console.log('data userRefreshToken');
 
       console.log(data);
