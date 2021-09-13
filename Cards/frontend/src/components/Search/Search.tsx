@@ -17,7 +17,7 @@ export default function Search() {
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, [packCards.subscriptors, packCards]);
+  }, [packCards.subscriptors]);
 
   const onChangeSearch = (query:any) => setSearchQuery(query);
 

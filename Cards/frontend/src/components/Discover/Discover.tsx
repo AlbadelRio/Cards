@@ -4,6 +4,7 @@ import {
   View, Text, ScrollView, Pressable
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
 import getRandomPackCardBySubject from '../../redux/actions/randomActionCreator';
 import styles from './discoverStlyles';
@@ -44,50 +45,57 @@ export default function Discover({ navigation }:any) {
   }, [randomPack]);
 
   return (
-
-    <View
-      style={{ flex: 2 }}
+    <LinearGradient
+      start={{ x: 1, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      colors={['#5EBBB0', '#5D5FEF']}
+      style={styles.linearGradient}
     >
       <View
-        style={{ flex: 1 }}
-      >
-        <Text
-          style={styles.title}
-        >
-          DISCOVER
-
-        </Text>
-        <Text
-          style={styles.subtitle}
-        >
-          Choose from these categories what interets you the most
-
-        </Text>
-      </View>
-      <ScrollView
-        horizontal
+        style={{ flex: 2 }}
       >
         <View
-          style={styles.containerList}
+          style={{ flex: 1 }}
         >
-          {filteredPackCard.map((element:any) => (
-            <>
-              <Pressable
-                style={styles.subjects}
-                onPress={() => {
-                  randomHandler(element);
-                }}
-              >
-                <Text
-                  key={element._id}
-                >
-                  {element.subject}
-                </Text>
-              </Pressable>
-            </>
-          ))}
+          <Text
+            style={styles.title}
+          >
+            DISCOVER
+
+          </Text>
+          <Text
+            style={styles.subtitle}
+          >
+            Choose from these categories what interets you the most
+
+          </Text>
         </View>
-      </ScrollView>
-    </View>
+        <ScrollView
+          horizontal
+        >
+          <View
+            style={styles.containerList}
+          >
+            {filteredPackCard.map((element:any) => (
+              <>
+                <Pressable
+                  style={styles.subjects}
+                  onPress={() => {
+                    randomHandler(element);
+                  }}
+                >
+                  <Text
+                    style={styles.text}
+                    key={element._id}
+                  >
+                    {element.subject}
+                  </Text>
+                </Pressable>
+              </>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
+    </LinearGradient>
   );
 }

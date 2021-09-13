@@ -1,7 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-
+  linearGradient: {
+    width: '100%',
+    height: '100%'
+  },
   title: {
     fontSize: 50,
     color: '#222222',
@@ -11,19 +14,16 @@ export default StyleSheet.create({
   },
   subtitle: {
     color: '#222222',
-    textAlign: 'center',
-    marginTop: 20
+    textAlign: 'center'
 
   },
   containerList: {
 
-    width: 600,
-    height: 300,
-    flex: 1,
+    width: 510,
+    height: 100,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-    marginTop: 50
+    justifyContent: 'space-evenly'
 
   },
   subjects: {
@@ -32,21 +32,11 @@ export default StyleSheet.create({
     width: 110,
     height: 40,
     backgroundColor: '#222222',
-    color: '#c5c5c5',
-    fontWeight: 'bold',
-    textAlign: 'center',
     elevation: 8
   },
-  bar: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#222222',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
 
-  },
-  texBar: {
-    margin: 15,
+  text: {
+    textAlign: 'center',
     color: '#c5c5c5',
     fontWeight: 'bold'
   }

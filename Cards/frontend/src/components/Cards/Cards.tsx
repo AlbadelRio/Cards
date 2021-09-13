@@ -17,19 +17,19 @@ export default function Cards({ navigation }:any) {
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, [packCards.length, packCards.packCards]);
+  }, [packCards.length, packCards.packCards, packCards.subscriptors]);
 
   useEffect(() => {
-    const subscripted = packCards.reduce((acc: any, packCard: any) => {
+    /* const subscripted = packCards.reduce((acc: any, packCard: any) => {
       if (packCard.subscriptors
         .some(({ userId: subscriptorUserId }: any) => subscriptorUserId === userId)) {
         return [...acc, packCard];
       }
       return acc;
-    }, []);
+    }, []); */
 
     const owned = packCards?.filter((value:any) => value?.user === userId);
-    setAllUserPackCards(owned.concat(subscripted));
+    setAllUserPackCards(owned);
   }, [packCards]);
 
   function deleteHandler(pack:any) {
