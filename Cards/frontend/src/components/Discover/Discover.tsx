@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View, Text, ScrollView, Pressable
 } from 'react-native';
@@ -12,8 +12,7 @@ export default function Discover({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
   const packCards = useSelector((store:any) => store.packardsReducer);
   const randomPack = useSelector((store:any) => store?.randomPackCardReducer);
-  const storetotal = useSelector((store) => store);
-  console.log(storetotal);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,24 +24,23 @@ export default function Discover({ navigation }:any) {
       subject
     }));
 
-  console.log('random', randomPack);
-
   function redirection(pack:any) {
-    navigation.navigate('Carroussel', {
-      pack
-    });
+    navigation.navigate('Carroussel',
+      { pack: pack[0] });
   }
   function randomHandler(element:any) {
+    setIsLoading(true);
     dispatch(getRandomPackCardBySubject(
       token,
       refreshToken,
       element.subject
     ));
-    console.log('jugadas locas');
-    console.log('randomPack', randomPack);
   }
   useEffect(() => {
-    redirection(randomPack);
+    if (isLoading) {
+      setIsLoading(false);
+      redirection(randomPack);
+    }
   }, [randomPack]);
 
   return (

@@ -8,20 +8,14 @@ type User= {
 }
 
 export function login(user:User) {
-  console.log(user);
   return async (dispatch:any) => {
-    console.log(dispatch);
     try {
-      console.log(ENV_VAR.concat('/login'));
       const { data } = await axios.post(ENV_VAR.concat('/login'), user);
-      console.log('login:');
-      console.log(data);
       return dispatch({
         type: actionTypes.AUTH_LOGIN,
         user: data
       });
     } catch (error:any) {
-      console.log(error);
       if (error?.response?.status === 401) {
         return dispatch({
           type: actionTypes.AUTH_LOGIN_ERROR,
@@ -38,11 +32,7 @@ export function login(user:User) {
 export function userRefreshToken(refreshToken:string) {
   return async (dispatch:any) => {
     try {
-      console.log('aaaa');
       const { data } = await axios.post(ENV_VAR.concat('/refreshToken'), { refreshToken });
-      console.log('data userRefreshToken');
-
-      console.log(data);
       return dispatch({
         type: actionTypes.REFRESH_TOKEN,
         token: data

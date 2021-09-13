@@ -9,6 +9,6 @@ export default function randomPackCardReducer(random = [], action:any) {
     default:
       break;
   }
-  console.log('newRandom', newRandom);
+
   return newRandom;
 }

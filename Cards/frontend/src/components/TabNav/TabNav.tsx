@@ -17,9 +17,7 @@ export default function NavTab():any {
 
     <Tab.Navigator
       screenOptions={{ headerShown: false }}
-
     >
-
       <Tab.Screen
         name="HOME"
         component={CardsNavigation}

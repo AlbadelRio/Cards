@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+
 import {
   FlatList,
   StatusBar,
@@ -14,7 +14,6 @@ const { width } = Dimensions.get('screen');
 
 export default function Carroussel({ route: { params } }:any) {
   const { pack } = params;
-  const random = useSelector((store:any) => store?.randomPackCardReducer);
 
   const cardW = width * 0.7;
   const cardH = cardW * 1.54;

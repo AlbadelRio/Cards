@@ -17,7 +17,7 @@ export default function Cards({ navigation }:any) {
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, [packCards.length, packCards.packCards]);
+  }, [packCards.length, packCards.packCards, packCards.subscriptors]);
 
   useEffect(() => {
     const subscripted = packCards.reduce((acc: any, packCard: any) => {
