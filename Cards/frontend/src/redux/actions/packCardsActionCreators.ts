@@ -5,7 +5,7 @@ import actionTypes from './actionTypes';
 export function loadPackcards(token:any, refreshtoken:any) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.get('http://192.168.0.24:5000/api/packCards', {
+      const { data } = await axios.get(':5000/api/packCards', {
         headers: { Authorization: `Bearer ${token}` }
       });
       return dispatch({
@@ -19,7 +19,7 @@ export function loadPackcards(token:any, refreshtoken:any) {
 /*
 export function getRandomPackCardBySubject(subject:string) {
   return async (dispatch:any) => {
-    const { data } = await axios.get(`http://192.168.0.103:5000/api/packCards?subject=${subject}`);
+    const { data } = await axios.get(`:5000/api/packCards?subject=${subject}`);
     return dispatch({
       type: actionTypes.GETRANDOM_PACKCARD,
       randomPackCard: data
@@ -31,7 +31,7 @@ export function getRandomPackCardBySubject(subject:string) {
 export function subscribeToPackCard(token:any, refreshtoken:any, userId:string, packCardId:string) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.put(`http://192.168.0.24:5000/api/packCards/${packCardId}`, { userId }, {
+      const { data } = await axios.put(`:5000/api/packCards/${packCardId}`, { userId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       return dispatch({
@@ -45,7 +45,7 @@ export function subscribeToPackCard(token:any, refreshtoken:any, userId:string, 
 export function createPackCard(token:any, refreshtoken:any, body:any) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.post('http://192.168.0.24:5000/api/packCards', body, {
+      const { data } = await axios.post(':5000/api/packCards', body, {
         headers: { Authorization: `Bearer ${token}` }
       });
       dispatch({
@@ -59,7 +59,7 @@ export function createPackCard(token:any, refreshtoken:any, body:any) {
 export function findPackCard(token:any, refreshtoken:any, packCardId:string) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.post(`http://192.168.0.24:5000/api/packCards/${packCardId}`, {
+      const { data } = await axios.post(`:5000/api/packCards/${packCardId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       dispatch({
@@ -74,7 +74,7 @@ export function findPackCard(token:any, refreshtoken:any, packCardId:string) {
 export function deletePackCard(token:any, refreshtoken:any, packCardId:string) {
   return async (dispatch:any) => {
     if (token) {
-      const { data } = await axios.delete(`http://192.168.0.24:5000/api/packCards/${packCardId}`, {
+      const { data } = await axios.delete(`:5000/api/packCards/${packCardId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('deleteDataAction', data);

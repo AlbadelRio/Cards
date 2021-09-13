@@ -35,7 +35,6 @@ export default function CreationForm({ route }:any) {
 
   return (
     <View>
-      {!cardForm && (
       <View>
         <TextInput
           value={packCardTitle}
@@ -58,7 +57,6 @@ export default function CreationForm({ route }:any) {
           </Text>
         </Pressable>
       </View>
-      )}
       { cardForm && (
       <CardCreationForm
         token={token}

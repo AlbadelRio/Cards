@@ -6,6 +6,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPackcards, subscribeToPackCard } from '../../redux/actions/packCardsActionCreators';
 
+import styles from './searchStyles';
+
 export default function Search() {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
   const userId = useSelector((store:any) => store.auth.user.user._id);
@@ -20,40 +22,41 @@ export default function Search() {
   const onChangeSearch = (query:any) => setSearchQuery(query);
 
   return (
-    <View>
+    <View style={styles.background}>
       <ScrollView>
-        <Text>SEARCH</Text>
-
-        <TextInput
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-        />
-
+        <Text style={styles.title}>SEARCH</Text>
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchBox}
+            placeholder="  Search  "
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+          />
+        </View>
         {packCards && packCards?.filter((value:any) => value?.subject.toLowerCase()
           .includes(searchQuery.toLowerCase())
           || value?.title
             .includes(searchQuery)).map((filteredValue:any) => (
-              <Text key={filteredValue._id}>
-                <Text>
-                  {filteredValue.image}
-                  {' '}
-                  {filteredValue.title}
-                  {' '}
-                  {filteredValue.subject}
-                  {' '}
-                  {filteredValue.user[0].username}
-                </Text>
+
+              <Text
+                key={filteredValue._id}
+              >
+                <Text>{filteredValue.subject}</Text>
+                <Text>{filteredValue.title}</Text>
+
                 <TouchableOpacity
                   onPress={() => {
-                    dispatch(subscribeToPackCard(token, refreshToken, userId, filteredValue._id));
+                    dispatch(subscribeToPackCard(
+                      token, refreshToken, userId, filteredValue._id
+                    ));
                   }}
-
                 >
-                  <Text>+</Text>
-
+                  <Text>
+                    +
+                  </Text>
                 </TouchableOpacity>
               </Text>
+
             ))}
       </ScrollView>
     </View>

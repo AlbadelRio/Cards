@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import {
   FlatList,
   StatusBar,
@@ -17,6 +17,14 @@ export default function Carroussel({ route: { params } }:any) {
   const cardW = width * 0.7;
   const cardH = cardW * 1.54;
   const totalNumberOfQuestions = pack.packCards.length;
+  const [showAnswer, setShowAnswer] = useState(false);
+  function flipHandler() {
+    if (showAnswer) {
+      setShowAnswer(false);
+    } else {
+      setShowAnswer(true);
+    }
+  }
   return (
     <View style={{ flex: 1, backgroundColor: '#5EBBB0' }}>
       <StatusBar hidden />
@@ -24,7 +32,6 @@ export default function Carroussel({ route: { params } }:any) {
         data={pack.packCards}
         horizontal
         pagingEnabled
-        // keyExtractor={(index:any) => index.toString()}
         renderItem={({ item, index }) => (
           <TouchableOpacity
             style={{
@@ -34,6 +41,7 @@ export default function Carroussel({ route: { params } }:any) {
               elevation: 20
             }}
             key={index.toString()}
+            onPress={flipHandler}
           >
             <View style={{
               backgroundColor: '#272727',
@@ -43,13 +51,23 @@ export default function Carroussel({ route: { params } }:any) {
               elevation: 2
             }}
             >
-              <Text style={{ color: 'white' }}>Question</Text>
-              <Text style={{ color: 'white' }}>
-                {index + 1}
-                /
-                {totalNumberOfQuestions}
-              </Text>
-              <Text style={{ color: 'white' }}>{item.question}</Text>
+              { !showAnswer && (
+              <>
+                <Text style={{ color: 'white' }}>Question</Text>
+                <Text style={{ color: 'white' }}>
+                  {index + 1}
+                  /
+                  {totalNumberOfQuestions}
+                </Text>
+                <Text style={{ color: 'white' }}>{item.question}</Text>
+              </>
+              )}
+              {showAnswer && (
+              <>
+                <Text style={{ color: 'white' }}>Answer</Text>
+                <Text style={{ color: 'white' }}>{item.answer}</Text>
+              </>
+              )}
               <Text style={{ color: 'white' }}>Tap to Flip</Text>
             </View>
 
