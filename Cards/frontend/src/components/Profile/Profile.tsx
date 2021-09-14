@@ -40,6 +40,7 @@ export default function Profile({ navigation }:any) {
       </View>
       <View style={styles.container}>
         <TextInput
+          testID="emailInput"
           style={styles.email}
           value={emailText}
           onChangeText={(text:any) => setEmail(text)}
@@ -47,6 +48,7 @@ export default function Profile({ navigation }:any) {
         />
 
         <TextInput
+          testID="passwordInput"
           style={styles.email}
           value={passwordText}
           onChangeText={(text:any) => setPassword(text)}

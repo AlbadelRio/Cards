@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when invoked a Carroussel component Should render Carroussel component 1`] = `
+<BVLinearGradient
+  colors={
+    Array [
+      4284398512,
+      4284309487,
+    ]
+  }
+  endPoint={
+    Object {
+      "x": 0,
+      "y": 1,
+    }
+  }
+  locations={null}
+  startPoint={
+    Object {
+      "x": 0,
+      "y": 0,
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "answer": "answer",
+          },
+        ]
+      }
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={true}
+      keyExtractor={[Function]}
+      onContentSizeChange={[Function]}
+      onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      pagingEnabled={true}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      viewabilityConfigCallbackPairs={Array []}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "elevation": 30,
+                "justifyContent": "center",
+                "width": 750,
+              }
+            }
+            testID="pressable0"
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#272727",
+                  "borderRadius": 16,
+                  "elevation": 2,
+                  "height": 808.5,
+                  "justifyContent": "space-between",
+                  "padding": 8,
+                  "textAlign": "center",
+                  "width": 525,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "white",
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Question
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "white",
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                  }
+                }
+              />
+              <Text
+                style={
+                  Object {
+                    "color": "white",
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Tap to Flip
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</BVLinearGradient>
+`;

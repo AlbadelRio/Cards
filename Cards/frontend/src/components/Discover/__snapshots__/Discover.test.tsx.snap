@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a Discover component when it is rendered Then should match the snapshot 1`] = `
+<BVLinearGradient
+  colors={
+    Array [
+      4284398512,
+      4284309487,
+    ]
+  }
+  endPoint={
+    Object {
+      "x": 0,
+      "y": 1,
+    }
+  }
+  locations={null}
+  startPoint={
+    Object {
+      "x": 1,
+      "y": 0,
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 2,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#222222",
+            "fontSize": 50,
+            "fontWeight": "bold",
+            "marginTop": 40,
+            "textAlign": "center",
+          }
+        }
+      >
+        DISCOVER
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#222222",
+            "textAlign": "center",
+          }
+        }
+      >
+        Choose from these categories what interets you the most
+      </Text>
+    </View>
+    <RCTScrollView
+      horizontal={true}
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "height": 100,
+              "justifyContent": "space-evenly",
+              "width": 510,
+            }
+          }
+        />
+      </View>
+    </RCTScrollView>
+  </View>
+</BVLinearGradient>
+`;
