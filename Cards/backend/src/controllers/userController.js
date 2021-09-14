@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const User = require('../models/userModel');
-const { DataChanges } = require('../utils/userUtils');
+const { dataChanges } = require('../utils/userUtils');
 
 function handleError(error, status = 500) {
   this.status(status);
@@ -41,7 +41,7 @@ async function updateUserData({ params: { userId }, body }, res) {
   try {
     const userFound = await User.findById(userId);
     const userData = userFound.data.find((data) => data.packId === body.packCardId);
-    DataChanges(body, userData, userFound);
+    dataChanges(body, userData, userFound);
     res.json(userFound);
   } catch (error) {
     handleError.call(res, error, 404);

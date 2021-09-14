@@ -1,4 +1,4 @@
-const { DataChanges } = require('../utils/userUtils');
+const { dataChanges } = require('../utils/userUtils');
 const {
   getAllUsers,
   updatedUserById,
@@ -136,7 +136,7 @@ describe('UserController', () => {
       describe('And userFound.data.find resolves', () => {
         test('Then call send', async () => {
           User.findById.mockResolvedValue({ data: [{ packId: 4 }] });
-          DataChanges.mockReturnValue();
+          dataChanges.mockReturnValue();
           await updateUserData(req, res);
           expect(res.json).toHaveBeenCalled();
         });
