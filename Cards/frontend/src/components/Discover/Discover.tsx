@@ -79,6 +79,7 @@ export default function Discover({ navigation }:any) {
             {filteredPackCard.map((element:any) => (
               <>
                 <Pressable
+                  key={element._id}
                   style={styles.subjects}
                   onPress={() => {
                     randomHandler(element);
@@ -86,7 +87,6 @@ export default function Discover({ navigation }:any) {
                 >
                   <Text
                     style={styles.text}
-                    key={element._id}
                   >
                     {element.subject}
                   </Text>
