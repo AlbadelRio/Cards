@@ -1,22 +1,19 @@
 import * as React from 'react';
 import { useState } from 'react';
-
+import LinearGradient from 'react-native-linear-gradient';
 import {
   FlatList,
   StatusBar,
   View,
   Text,
-  Dimensions,
-  TouchableOpacity
+  Pressable
 } from 'react-native';
 
-const { width } = Dimensions.get('screen');
+import styles from './carrousselStyle';
 
 export default function Carroussel({ route: { params } }:any) {
   const { pack } = params;
 
-  const cardW = width * 0.7;
-  const cardH = cardW * 1.54;
   const [showAnswer, setShowAnswer] = useState(false);
   function flipHandler() {
     if (showAnswer) {
@@ -27,54 +24,45 @@ export default function Carroussel({ route: { params } }:any) {
   }
 
   return (
-
-    <View style={{ flex: 1, backgroundColor: '#5EBBB0' }}>
-      <StatusBar hidden />
-      <FlatList
-        data={pack?.packCards}
-        horizontal
-        pagingEnabled
-        renderItem={({ item, index }) => (
-          <TouchableOpacity
-            style={{
-              width,
-              justifyContent: 'center',
-              alignItems: 'center',
-              elevation: 20
-            }}
-            key={index.toString()}
-            onPress={flipHandler}
-          >
-            <View style={{
-              backgroundColor: '#272727',
-              width: cardW,
-              height: cardH,
-              borderRadius: 16,
-              elevation: 2
-            }}
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      colors={['#5EBBB0', '#5D5FEF']}
+      style={styles.linearGradient}
+    >
+      <View style={{ flex: 1 }}>
+        <StatusBar hidden />
+        <FlatList
+          data={pack?.packCards}
+          horizontal
+          pagingEnabled
+          renderItem={({ item, index }) => (
+            <Pressable
+              style={styles.card}
+              key={index.toString()}
+              onPress={flipHandler}
             >
-              { !showAnswer && (
-              <>
-                <Text style={{ color: 'white' }}>Question</Text>
-                <Text style={{ color: 'white' }}>
-                  {index + 1}
-                </Text>
-                <Text style={{ color: 'white' }}>{item?.question}</Text>
-              </>
-              )}
-              {showAnswer && (
-              <>
-                <Text style={{ color: 'white' }}>Answer</Text>
-                <Text style={{ color: 'white' }}>{item?.answer}</Text>
-              </>
-              )}
-              <Text style={{ color: 'white' }}>Tap to Flip</Text>
-            </View>
+              <View style={styles.inside}>
+                { !showAnswer && (
+                <>
+                  <Text style={styles.text}>Question</Text>
+                  <Text style={styles.text}>{item?.question}</Text>
+                </>
+                )}
+                {showAnswer && (
+                <>
+                  <Text style={styles.text}>Answer</Text>
+                  <Text style={styles.text}>{item?.answer}</Text>
+                </>
+                )}
+                <Text style={styles.text}>Tap to Flip</Text>
+              </View>
 
-          </TouchableOpacity>
+            </Pressable>
 
-        )}
-      />
-    </View>
+          )}
+        />
+      </View>
+    </LinearGradient>
   );
 }

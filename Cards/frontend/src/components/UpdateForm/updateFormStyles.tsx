@@ -8,6 +8,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+
   title: {
     fontSize: 25,
     fontWeight: 'bold',
