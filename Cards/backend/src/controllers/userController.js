@@ -7,15 +7,6 @@ function handleError(error, status = 500) {
   this.send(error.message);
 }
 
-async function createUser({ body }, res) {
-  try {
-    const createdUser = await User.create(body);
-    res.json(createdUser);
-  } catch (error) {
-    handleError.call(res, error);
-  }
-}
-
 async function getAllUsers({ query }, res) {
   try {
     const users = await User.find(query);
@@ -66,7 +57,6 @@ async function deleteUser({ params: { userId } }, res) {
   }
 }
 module.exports = {
-  createUser,
   getAllUsers,
   updatedUserById,
   getUserById,

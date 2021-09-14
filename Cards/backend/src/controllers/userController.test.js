@@ -1,6 +1,5 @@
-const { DataChanges } = require('../utils/utils');
+const { DataChanges } = require('../utils/userUtils');
 const {
-  createUser,
   getAllUsers,
   updatedUserById,
   getUserById,
@@ -11,7 +10,7 @@ const {
 const User = require('../models/userModel');
 
 jest.mock('../models/userModel');
-jest.mock('../utils/utils');
+jest.mock('../utils/userUtils');
 
 describe('UserController', () => {
   let req;
@@ -23,34 +22,6 @@ describe('UserController', () => {
       status: jest.fn(),
       send: jest.fn()
     };
-  });
-
-  describe('Given a createUser controller', () => {
-    req = {
-      body: { }
-    };
-    describe('When is invoked', () => {
-      describe('And the User.create resolves', () => {
-        test('then call send', async () => {
-          User.create.mockResolvedValue({ username: ' ' });
-          await createUser(req, res);
-          expect(res.json).toHaveBeenCalled();
-        });
-      });
-
-      describe('And User.create rejects', () => {
-        beforeEach(async () => {
-          User.create.mockRejectedValue(new Error('CREATE_ERROR'));
-          await createUser(req, res);
-        });
-        test('Then handleError call with 500', async () => {
-          expect(res.status).toHaveBeenCalledWith(500);
-        });
-        test('Then handleError send', () => {
-          expect(res.send.mock.calls[0][0]).toBe('CREATE_ERROR');
-        });
-      });
-    });
   });
 
   describe('Given a getAllUsers controller', () => {
