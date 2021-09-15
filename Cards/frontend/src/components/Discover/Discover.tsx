@@ -46,7 +46,7 @@ export default function Discover({ navigation }:any) {
 
   return (
     <LinearGradient
-      start={{ x: 1, y: 0 }}
+      start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
       colors={['#5EBBB0', '#5D5FEF']}
       style={styles.linearGradient}
