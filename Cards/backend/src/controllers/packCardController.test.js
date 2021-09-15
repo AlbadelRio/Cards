@@ -4,7 +4,7 @@ const {
   findRandomBySubject,
   findAllPackCards,
   findPackCardById,
-  updatePackCard
+  updateUserPackCard
 } = require('./packCardController');
 
 const PackCard = require('../models/packCardModel');
@@ -118,14 +118,14 @@ describe('packCardController', () => {
       });
       describe('And PackCard.find', () => {
         test('Then call send', async () => {
-          PackCard.find.mockResolvedValue({ });
+          PackCard.find.mockReturnValue({ populate: jest.fn().mockResolvedValue({ }) });
           await findAllPackCards(req, res);
           expect(res.json).toHaveBeenCalled();
         });
       });
       describe('And PackCard.find rejects', () => {
         beforeEach(async () => {
-          PackCard.find.mockRejectedValue(new Error('SERVER_ERROR'));
+          PackCard.find.mockReturnValue({ populate: jest.fn().mockRejectedValue(new Error('SERVER_ERROR')) });
           await findAllPackCards(req, res);
         });
         test('Then handleError call with 500', () => {
@@ -164,7 +164,7 @@ describe('packCardController', () => {
       });
     });
 
-    describe('Given an updatePackCard controller', () => {
+    describe('Given an updateUserPackCard controller', () => {
       describe('And PackCard.findByIdAndUpdate resolves', () => {
         beforeEach(() => {
           req = {
@@ -172,15 +172,19 @@ describe('packCardController', () => {
           };
         });
         test('Then call send', async () => {
-          PackCard.findByIdAndUpdate.mockResolvedValue({ });
-          await updatePackCard(req, res);
-          expect(res.json).toHaveBeenCalled();
+          PackCard.findById.mockResolvedValue({
+            save: jest.fn(),
+            subscriptors: []
+          });
+          const updadatedPackCard = await PackCard.findById();
+          await updateUserPackCard(req, res);
+          expect(updadatedPackCard.save).toHaveBeenCalled();
         });
       });
       describe('And PackCard.findByIdAndUpdate rejects', () => {
         beforeEach(async () => {
-          PackCard.findByIdAndUpdate.mockRejectedValue(new Error('SERVER_ERROR'));
-          await updatePackCard(req, res);
+          PackCard.findById.mockRejectedValue(new Error('SERVER_ERROR'));
+          await updateUserPackCard(req, res);
         });
         test('Then handleError call with 500', () => {
           expect(res.status).toHaveBeenCalledWith(500);

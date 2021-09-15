@@ -27,5 +27,34 @@ export default StyleSheet.create({
     borderColor: '#ffffff',
     borderRadius: 6,
     padding: 6
+  },
+  filteredPackCard: {
+    width: 350,
+    height: 90,
+    backgroundColor: 'white',
+    margin: 10,
+    textAlign: 'left',
+    flexDirection: 'row',
+    borderRadius: 5,
+    justifyContent: 'space-between'
+
+  },
+  add: {
+    width: 40,
+    height: 40
+  },
+  addContainer: {
+    width: 50,
+    height: 50,
+    alignItems: 'flex-end',
+    justifyContent: 'center'
+  },
+  info: {
+    justifyContent: 'center',
+    marginLeft: 25
+  },
+  text: {
+    fontWeight: 'bold'
   }
+
 });

@@ -1,19 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 const User = require('../models/userModel');
-const { DataChanges } = require('../utils/userUtils');
+const { dataChanges } = require('../utils/userUtils');
 
 function handleError(error, status = 500) {
   this.status(status);
   this.send(error.message);
-}
-
-async function createUser({ body }, res) {
-  try {
-    const createdUser = await User.create(body);
-    res.json(createdUser);
-  } catch (error) {
-    handleError.call(res, error);
-  }
 }
 
 async function getAllUsers({ query }, res) {
@@ -50,7 +41,7 @@ async function updateUserData({ params: { userId }, body }, res) {
   try {
     const userFound = await User.findById(userId);
     const userData = userFound.data.find((data) => data.packId === body.packCardId);
-    DataChanges(body, userData, userFound);
+    dataChanges(body, userData, userFound);
     res.json(userFound);
   } catch (error) {
     handleError.call(res, error, 404);
@@ -66,7 +57,6 @@ async function deleteUser({ params: { userId } }, res) {
   }
 }
 module.exports = {
-  createUser,
   getAllUsers,
   updatedUserById,
   getUserById,

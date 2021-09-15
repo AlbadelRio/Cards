@@ -21,16 +21,16 @@ export default function Cards({ navigation }:any) {
   }, [packCards.length, packCards.packCards, packCards.subscriptors]);
 
   useEffect(() => {
-    /* const subscripted = packCards.reduce((acc: any, packCard: any) => {
-      if (packCard.subscriptors
+    const subscripted = packCards?.reduce((acc: any, packCard: any) => {
+      if (packCard?.subscriptors
         .some(({ userId: subscriptorUserId }: any) => subscriptorUserId === userId)) {
         return [...acc, packCard];
       }
       return acc;
-    }, []); */
+    }, []);
 
     const owned = packCards?.filter((value:any) => value?.user === userId);
-    setAllUserPackCards(owned);
+    setAllUserPackCards(owned.concat(subscripted));
   }, [packCards]);
 
   function deleteHandler(pack:any) {
@@ -38,7 +38,6 @@ export default function Cards({ navigation }:any) {
       token,
       refreshToken,
       pack._id
-
     ));
   }
   return (
@@ -71,9 +70,7 @@ export default function Cards({ navigation }:any) {
                   <Pressable
                     onPress={() => { deleteHandler(pack); }}
                   >
-                    <View
-                      style={styles.delete}
-                    >
+                    <View>
                       <Image
                         style={styles.tinyDelete}
                         source={{

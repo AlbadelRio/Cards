@@ -4,10 +4,11 @@ import {
   View, TextInput, Text, Pressable
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-
+import LinearGradient from 'react-native-linear-gradient';
 import { createPackCard } from '../../redux/actions/packCardsActionCreators';
 
 import CardCreationForm from '../CardCreationForm/CardCreationForm';
+import styles from './CreationFormStyles';
 
 export default function CreationForm({ route }:any) {
   const { token, refreshToken, userId } = route.params;
@@ -34,36 +35,53 @@ export default function CreationForm({ route }:any) {
   }
 
   return (
-    <View>
-      <View>
-        <TextInput
-          value={packCardTitle}
-          onChangeText={(text:any) => setPackCardTitle(text)}
-          placeholder="Title"
-        />
-
-        <TextInput
-          value={packCardSubject}
-          onChangeText={(text:any) => setPackCardSubject(text)}
-          placeholder="Subject"
-        />
-
-        <Pressable
-          onPress={newPAckCardHandler}
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      colors={['#5EBBB0', '#E5E5E5']}
+      style={styles.linearGradient}
+    >
+      <View
+        style={styles.container}
+      >
+        <View
+          style={styles.form}
         >
-          <Text>
-            ADD
+          <TextInput
+            style={styles.entrance}
+            value={packCardTitle}
+            onChangeText={(text:any) => setPackCardTitle(text)}
+            placeholder="Title"
+          />
 
-          </Text>
-        </Pressable>
+          <TextInput
+            style={styles.entrance}
+            value={packCardSubject}
+            onChangeText={(text:any) => setPackCardSubject(text)}
+            placeholder="Subject"
+          />
+
+          <View>
+            <Pressable
+              onPress={newPAckCardHandler}
+            >
+              <Text
+                style={styles.button}
+              >
+                ADD
+
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+        { cardForm && (
+        <CardCreationForm
+          token={token}
+          refreshToken={refreshToken}
+          activePackCard={actualizedPackCard._id}
+        />
+        )}
       </View>
-      { cardForm && (
-      <CardCreationForm
-        token={token}
-        refreshToken={refreshToken}
-        activePackCard={actualizedPackCard._id}
-      />
-      )}
-    </View>
+    </LinearGradient>
   );
 }

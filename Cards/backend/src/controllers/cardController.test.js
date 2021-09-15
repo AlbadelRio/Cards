@@ -30,11 +30,12 @@ describe('CardController', () => {
         test('Then call send', async () => {
           Card.create.mockResolvedValue({ });
           PackCard.findById.mockResolvedValue({
-            packCard: [],
+            packCards: [],
             save: jest.fn()
           });
+          const foundPackCard = await PackCard.findById();
           await createCard(req, res);
-          expect(res.json).toHaveBeenCalled();
+          expect(foundPackCard.save).toHaveBeenCalled();
         });
       });
       describe('And Card.create rejects', () => {

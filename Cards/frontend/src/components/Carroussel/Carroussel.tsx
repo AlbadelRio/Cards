@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import * as React from 'react';
 import { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
@@ -38,6 +39,7 @@ export default function Carroussel({ route: { params } }:any) {
           pagingEnabled
           renderItem={({ item, index }) => (
             <Pressable
+              testID={`pressable${index}`}
               style={styles.card}
               key={index.toString()}
               onPress={flipHandler}
@@ -51,7 +53,7 @@ export default function Carroussel({ route: { params } }:any) {
                 )}
                 {showAnswer && (
                 <>
-                  <Text style={styles.text}>Answer</Text>
+                  <Text testID="answer" style={styles.text}>Answer</Text>
                   <Text style={styles.text}>{item?.answer}</Text>
                 </>
                 )}

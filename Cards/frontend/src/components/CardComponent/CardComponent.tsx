@@ -60,14 +60,12 @@ export default function Card({ card }:any) {
           </View>
           <Text>Question:</Text>
           <TextInput
-            key={card._id}
             value={question}
             editable={editable}
             onChangeText={(text:any) => setQuestion(text)}
           />
           <Text>Answer:</Text>
           <TextInput
-            key={card._id}
             value={answer}
             editable={editable}
             onChangeText={(text:any) => setAnswer(text)}

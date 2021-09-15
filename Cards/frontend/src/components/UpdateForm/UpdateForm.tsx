@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import {
   Text, View, ScrollView
@@ -20,7 +21,11 @@ export default function UpdateForm({ route: { params: { pack } } }:any) {
 
         <ScrollView>
           {pack?.packCards.map((card:any) => (
-            <Card card={card} />))}
+            <Card
+              key={card._id}
+              card={card}
+            />
+          ))}
         </ScrollView>
       </View>
     </SafeAreaView>

@@ -46,7 +46,7 @@ export default function Discover({ navigation }:any) {
 
   return (
     <LinearGradient
-      start={{ x: 1, y: 0 }}
+      start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
       colors={['#5EBBB0', '#5D5FEF']}
       style={styles.linearGradient}
@@ -79,6 +79,7 @@ export default function Discover({ navigation }:any) {
             {filteredPackCard.map((element:any) => (
               <>
                 <Pressable
+                  key={element._id}
                   style={styles.subjects}
                   onPress={() => {
                     randomHandler(element);
@@ -86,7 +87,6 @@ export default function Discover({ navigation }:any) {
                 >
                   <Text
                     style={styles.text}
-                    key={element._id}
                   >
                     {element.subject}
                   </Text>
