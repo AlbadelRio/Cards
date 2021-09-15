@@ -5,6 +5,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import createCard from '../../redux/actions/cardActionCreator';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
+import styles from './CardCreationStyles';
 
 export default function CardCreationForm({ token, refreshToken, activePackCard }:any) {
   const cards = useSelector((store:any) => store.cardsReducer);
@@ -26,21 +27,28 @@ export default function CardCreationForm({ token, refreshToken, activePackCard }
       ));
     }
   }
+
   useEffect(() => {
     dispatch(loadPackcards(token,
       refreshToken));
   }, [cards]);
 
   return (
-    <View>
-      <View>
+    <View
+      style={styles.container}
+    >
+      <View
+        style={styles.form}
+      >
         <TextInput
+          style={styles.entrance}
           value={questionText}
           onChangeText={(text:any) => setQuestionText(text)}
           placeholder="Question"
         />
 
         <TextInput
+          style={styles.entrance}
           value={answerText}
           onChangeText={(text:any) => setAnswerText(text)}
           placeholder="Answer"
@@ -49,7 +57,9 @@ export default function CardCreationForm({ token, refreshToken, activePackCard }
         <TouchableOpacity
           onPress={newCardHandler}
         >
-          <Text>
+          <Text
+            style={styles.button}
+          >
             ADD
 
           </Text>

@@ -38,7 +38,6 @@ export default function Cards({ navigation }:any) {
       token,
       refreshToken,
       pack._id
-
     ));
   }
   return (
