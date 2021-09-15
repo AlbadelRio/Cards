@@ -16,7 +16,7 @@ export default StyleSheet.create({
     height: 150,
     backgroundColor: '#E5E5E5',
     borderRadius: 5,
-    margin: 50,
+    margin: 5,
     padding: 10
   },
   entrance: {

@@ -25,6 +25,8 @@ export default function CardCreationForm({ token, refreshToken, activePackCard }
         activePackCard,
         body
       ));
+      setAnswerText('');
+      setQuestionText('');
     }
   }
 
