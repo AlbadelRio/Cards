@@ -21,20 +21,11 @@ export default function Search() {
   }, [packCards.subscriptors]);
 
   useEffect(() => {
-    const notSubscripted = packCards?.reduce((acc: any, packCard: any) => {
-      if (packCard?.subscriptors
-        .some(({ userId: subscriptorUserId }: any) => subscriptorUserId !== userId)) {
-        return [...acc, packCard];
-      }
-      return acc;
-    }, []);
-    console.log('notSubscripted', notSubscripted);
-
-    const notOwned = packCards?.filter((value:any) => value?.user !== userId);
-    console.log('notOwned', notOwned);
-    setAllPackCards(notOwned.concat(notSubscripted));
+    const notOwned = packCards?.filter((value:any) => (value?.user !== userId
+      && !value?.subscriptors
+      .some(({ userId: subscriptorId }: any) => subscriptorId === userId)));
+    setAllPackCards(notOwned);
   }, [packCards]);
-  console.log(setAllPackCards);
   const onChangeSearch = (query:any) => setSearchQuery(query);
 
   return (
