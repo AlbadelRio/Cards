@@ -13,13 +13,14 @@ export default function Cards({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
   const userId = useSelector((store:any) => store.auth.user.user._id);
   const packCards = useSelector((store:any) => store.packardsReducer);
+  const subscriptedPack = useSelector((store:any) => store.subscribeToPackCardReducer);
 
   const dispatch = useDispatch();
   const [allUserPackCards, setAllUserPackCards] = useState([]);
 
   useEffect(() => {
     dispatch(loadPackcards(token, refreshToken));
-  }, [packCards.length, packCards.packCards, packCards.subscriptors]);
+  }, [packCards.length, packCards.packCards, subscriptedPack]);
 
   useEffect(() => {
     const subscripted = packCards?.reduce((acc: any, packCard: any) => {
