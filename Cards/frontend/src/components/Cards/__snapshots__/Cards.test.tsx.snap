@@ -1,3 +1,435 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Given a Cards component when it is rendered Then should match the snapshot 1`] = `undefined`;
+exports[`Given a Cards component when it is rendered Then should match the snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#d5d5d5",
+      "flex": 1,
+      "height": "100%",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "height": "100%",
+        "padding": 10,
+        "width": "75%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#272727",
+          "fontSize": 35,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      MY CARDS
+    </Text>
+    <View>
+      <RCTScrollView>
+        <View>
+          <Text>
+            2
+             
+            PACKCARDS
+          </Text>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 100,
+                "justifyContent": "space-between",
+                "width": 300,
+              }
+            }
+            testID="update0"
+          >
+            <BVLinearGradient
+              colors={
+                Array [
+                  4284398512,
+                  4284309487,
+                ]
+              }
+              endPoint={
+                Object {
+                  "x": 0,
+                  "y": 1,
+                }
+              }
+              locations={null}
+              startPoint={
+                Object {
+                  "x": 1,
+                  "y": 0,
+                }
+              }
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 3,
+                  "elevation": 7,
+                  "height": 45,
+                  "justifyContent": "center",
+                  "width": 45,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="delete0"
+              >
+                <View>
+                  <Image
+                    source={
+                      Object {
+                        "uri": "https://img.icons8.com/plumpy/24/000000/waste.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 15,
+                        "width": 15,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </BVLinearGradient>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "width": 200,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "color": "#272727",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#272727",
+                      "fontSize": 15,
+                      "fontWeight": "bold",
+                    }
+                  }
+                />
+                <Text />
+              </View>
+              <View>
+                <Text>
+                   
+                  CARDS
+                </Text>
+              </View>
+            </View>
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              testID="carroussel0"
+            >
+              <View>
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://img.icons8.com/material-rounded/96/000000/play--v1.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 45,
+                      "width": 45,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 100,
+                "justifyContent": "space-between",
+                "width": 300,
+              }
+            }
+            testID="update1"
+          >
+            <BVLinearGradient
+              colors={
+                Array [
+                  4284398512,
+                  4284309487,
+                ]
+              }
+              endPoint={
+                Object {
+                  "x": 0,
+                  "y": 1,
+                }
+              }
+              locations={null}
+              startPoint={
+                Object {
+                  "x": 1,
+                  "y": 0,
+                }
+              }
+              style={
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 3,
+                  "elevation": 7,
+                  "height": 45,
+                  "justifyContent": "center",
+                  "width": 45,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="delete1"
+              >
+                <View>
+                  <Image
+                    source={
+                      Object {
+                        "uri": "https://img.icons8.com/plumpy/24/000000/waste.png",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 15,
+                        "width": 15,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </BVLinearGradient>
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "width": 200,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "color": "#272727",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#272727",
+                      "fontSize": 15,
+                      "fontWeight": "bold",
+                    }
+                  }
+                />
+                <Text />
+              </View>
+              <View>
+                <Text>
+                   
+                  CARDS
+                </Text>
+              </View>
+            </View>
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              testID="carroussel1"
+            >
+              <View>
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://img.icons8.com/material-rounded/96/000000/play--v1.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 45,
+                      "width": 45,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "flex": 1,
+              }
+            }
+          >
+            <BVLinearGradient
+              colors={
+                Array [
+                  4284398512,
+                  4284309487,
+                ]
+              }
+              endPoint={
+                Object {
+                  "x": 0,
+                  "y": 1,
+                }
+              }
+              locations={null}
+              startPoint={
+                Object {
+                  "x": 1,
+                  "y": 0,
+                }
+              }
+              style={
+                Object {
+                  "borderRadius": 4,
+                  "elevation": 7,
+                  "height": 50,
+                  "marginTop": 20,
+                  "width": 90,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="add"
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#272727",
+                      "fontSize": 18,
+                      "fontWeight": "bold",
+                      "padding": 12,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  ADD
+                </Text>
+              </View>
+            </BVLinearGradient>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;

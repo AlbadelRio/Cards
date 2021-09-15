@@ -76,9 +76,10 @@ export default function Discover({ navigation }:any) {
           <View
             style={styles.containerList}
           >
-            {filteredPackCard.map((element:any) => (
+            {filteredPackCard.map((element:any, index) => (
               <>
                 <Pressable
+                  testID={`pressable${index}`}
                   key={element._id}
                   style={styles.subjects}
                   onPress={() => {

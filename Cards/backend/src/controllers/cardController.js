@@ -13,6 +13,7 @@ async function createCard({ params: { packCardId }, body }, res) {
     const foundPackCard = await PackCard.findById(packCardId);
     foundPackCard.packCards.push(createdCard._id);
     foundPackCard.save();
+    res.json(createdCard);
   } catch (error) {
     handleError.call(res, error, 500);
   }

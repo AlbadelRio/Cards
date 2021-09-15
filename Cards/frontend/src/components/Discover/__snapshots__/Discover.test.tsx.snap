@@ -17,7 +17,7 @@ exports[`Given a Discover component when it is rendered Then should match the sn
   locations={null}
   startPoint={
     Object {
-      "x": 1,
+      "x": 0,
       "y": 0,
     }
   }
