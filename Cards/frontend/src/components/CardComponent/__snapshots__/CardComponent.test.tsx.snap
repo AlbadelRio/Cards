@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a Cardcomponent when it is rendered Then should match the snapshot 1`] = `
+<View>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#EAECF2",
+            "borderRadius": 3,
+            "elevation": 10,
+            "height": 200,
+            "justifyContent": "center",
+            "marginTop": 60,
+            "padding": 10,
+            "width": 350,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "flex-end",
+            }
+          }
+        />
+        <Text>
+          Question:
+        </Text>
+        <TextInput
+          editable={false}
+          onChangeText={[Function]}
+          value="quest"
+        />
+        <Text>
+          Answer:
+        </Text>
+        <TextInput
+          editable={false}
+          onChangeText={[Function]}
+          value="answer"
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "flex-end",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            nativeID="animatedComponent"
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View>
+              <Image
+                source={
+                  Object {
+                    "uri": "https://img.icons8.com/material-sharp/24/000000/edit--v3.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

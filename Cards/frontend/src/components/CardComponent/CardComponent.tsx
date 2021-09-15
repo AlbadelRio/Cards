@@ -45,6 +45,7 @@ export default function Card({ card }:any) {
           <View style={styles.modify}>
             {editable && (
             <TouchableOpacity
+              testID="add"
               onPress={handleUpdate}
             >
               <View>

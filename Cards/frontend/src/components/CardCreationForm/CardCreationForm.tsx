@@ -3,7 +3,7 @@ import {
   Text, View, TextInput, TouchableOpacity
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import createCard from '../../redux/actions/cardActionCreator';
+import { createCard } from '../../redux/actions/cardActionCreator';
 import { loadPackcards } from '../../redux/actions/packCardsActionCreators';
 import styles from './CardCreationStyles';
 

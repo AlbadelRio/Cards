@@ -1,7 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { render, fireEvent } from '../../utils/test.utils';
+import { deletePackCard } from '../../redux/actions/packCardsActionCreators';
 import Cards from './Cards';
+
+jest.mock('../../redux/actions/packCardsActionCreators', () => ({
+  ...jest.requireActual('../../redux/actions/packCardsActionCreators'),
+  deletePackCard: jest.fn()
+}));
 
 describe('Given a Cards component', () => {
   describe('when it is rendered', () => {
@@ -50,6 +56,13 @@ describe('Given a Cards component', () => {
       const pressable = screen.getByTestId('add');
       fireEvent.press(pressable);
       expect(navigation.navigate).toHaveBeenCalled();
+    });
+    test('should call deleteHandler', () => {
+      (deletePackCard as jest.Mock).mockReturnValueOnce({ type: '' });
+      const pressable = screen.getByTestId('delete0');
+      fireEvent.press(pressable);
+
+      expect(deletePackCard).toHaveBeenCalled();
     });
   });
 });
