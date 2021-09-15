@@ -53,6 +53,7 @@ export default function Profile({ navigation }:any) {
           value={passwordText}
           onChangeText={(text:any) => setPassword(text)}
           placeholder="password"
+          secureTextEntry
         />
         <TouchableOpacity
           style={styles.button}

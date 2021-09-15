@@ -9,6 +9,7 @@ export default function createCard(token:any, refreshtoken:any, activePackCard:s
       const { data } = await axios.post(ENV_VAR.concat(`/api/cards/${activePackCard}`), body, {
         headers: { Authorization: `Bearer ${token}` }
       });
+      console.log(data);
       dispatch({
         type: actionTypes.CREATE_CARD,
         newCard: data

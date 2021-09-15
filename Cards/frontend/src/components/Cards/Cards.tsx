@@ -13,6 +13,7 @@ export default function Cards({ navigation }:any) {
   const { token, refreshToken } = useSelector((store:any) => store.tokensReducer);
   const userId = useSelector((store:any) => store.auth.user.user._id);
   const packCards = useSelector((store:any) => store.packardsReducer);
+
   const dispatch = useDispatch();
   const [allUserPackCards, setAllUserPackCards] = useState([]);
 
@@ -51,8 +52,9 @@ export default function Cards({ navigation }:any) {
               {' '}
               PACKCARDS
             </Text>
-            {allUserPackCards.map((pack:any) => (
+            {allUserPackCards.map((pack:any, index:any) => (
               <Pressable
+                testID={`update${index}`}
                 key={pack._id}
                 style={styles.items}
                 onPress={() => {
@@ -68,6 +70,7 @@ export default function Cards({ navigation }:any) {
                   style={styles.linearGradient}
                 >
                   <Pressable
+                    testID={`delete${index}`}
                     onPress={() => { deleteHandler(pack); }}
                   >
                     <View>
@@ -94,6 +97,7 @@ export default function Cards({ navigation }:any) {
                   </View>
                 </View>
                 <Pressable
+                  testID={`carroussel${index}`}
                   onPress={() => {
                     navigation.navigate('Carroussel', {
                       userId,
@@ -121,6 +125,7 @@ export default function Cards({ navigation }:any) {
                 style={styles.linearGradientButton}
               >
                 <Pressable
+                  testID="add"
                   onPress={() => {
                     navigation.navigate('CreationForm', {
                       userId,
