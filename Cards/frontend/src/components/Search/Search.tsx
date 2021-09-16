@@ -42,8 +42,8 @@ export default function Search() {
         </View>
         {allPackcards && allPackcards?.filter((value:any) => value?.subject.toLowerCase()
           .includes(searchQuery.toLowerCase())
-          || value?.title
-            .includes(searchQuery)).map((filteredValue:any) => (
+          || value?.title.toLowerCase()
+            .includes(searchQuery.toLowerCase())).map((filteredValue:any) => (
 
               <View
                 style={styles.filteredPackCard}
